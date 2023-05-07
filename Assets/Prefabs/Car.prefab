@@ -148,7 +148,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 5889064261774167250}
-  speed: 6
+  speed: 7
 --- !u!1 &5889064262308663129
 GameObject:
   m_ObjectHideFlags: 0
@@ -220,4 +220,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad24cfadb87e2c54cb46e6b259a10732, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cake: {fileID: 3079646118903106389, guid: c5f27fd631a0d96439f86cf3b094e4cb, type: 3}
+  foods:
+  - {fileID: 8084442375423665382, guid: 2b9372d4c518e154b847c6a49084a096, type: 3}
+  - {fileID: 3079646118903106389, guid: c5f27fd631a0d96439f86cf3b094e4cb, type: 3}

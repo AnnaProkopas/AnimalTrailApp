@@ -2,7 +2,8 @@ using UnityEngine;
 
 public class CarSnackSpawner : MonoBehaviour, IPlayerTriggered
 {
-    public GameObject cake;
+    [SerializeField]
+    private GameObject[] foods;
 
     private readonly TriggeredObjectType type = TriggeredObjectType.CarFoodSpawner;
 
@@ -34,6 +35,7 @@ public class CarSnackSpawner : MonoBehaviour, IPlayerTriggered
 
     private void Spawn(Vector2 position)
     {
-        Instantiate(cake, position, Quaternion.identity);
+        int foodInd = Random.Range(0, foods.Length);
+        Instantiate(foods[foodInd], position, Quaternion.identity);
     }
 }
