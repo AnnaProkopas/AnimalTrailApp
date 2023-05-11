@@ -110,7 +110,6 @@ public class Player : MonoBehaviour
         currentScore++;
         recordValueForFoodCounter = Math.Max(currentScore, recordValueForFoodCounter);
         currentScoreText.text = currentScore + (recordValueForFoodCounter > currentScore ? ("(" + recordValueForFoodCounter + ")") : "");
-        // PlayerRatingService.SetRecordFoodCounter(recordValueForFoodCounter);
     }
 
     private bool IsReadyForDeath()
@@ -198,8 +197,11 @@ public class Player : MonoBehaviour
     }
 
     public void OnFinishTakingDamage()
-    { 
-        IfNotDyingSetState(PlayerState.Idle);
+    {
+        if (currentState != PlayerState.Hidden)
+        {
+            IfNotDyingSetState(PlayerState.Idle);
+        }
     }
 
     public void EnableAttackMode()

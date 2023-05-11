@@ -47,8 +47,6 @@ public class Mouse : MovableObject, IPlayerTriggered
 
     protected override void Update()
     {
-        movement = directionSign * currentSpeed;
-
         float absX = Mathf.Abs(direction.x);
         float absY = Mathf.Abs(direction.y);
 
@@ -56,9 +54,9 @@ public class Mouse : MovableObject, IPlayerTriggered
 
         if (absX > absY) 
         {
-            animator.SetFloat("DirectionX", Mathf.Sign(movement.x));
+            animator.SetFloat("DirectionX", Mathf.Sign(direction.x));
         } else {
-            animator.SetFloat("DirectionY", Mathf.Sign(movement.y));
+            animator.SetFloat("DirectionY", Mathf.Sign(direction.y));
         }
     }
 
@@ -75,10 +73,5 @@ public class Mouse : MovableObject, IPlayerTriggered
         Destroy(gameObject);
 
         player.EatHealthyFood(energyPoints, healthPoints);
-        // CollisionResult res = new CollisionResult();
-        // res.healthPoints = healthPoints;
-        // res.energyPoints = energyPoints;
-        // res.type = type;
-        // return res;
     }
 }

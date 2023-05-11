@@ -7,5 +7,6 @@ public enum PlayerState
     Wounded = Attack,
     Dying,
     Dead = 5,
-    Sleep
+    Sleep,
+    Hidden
 }

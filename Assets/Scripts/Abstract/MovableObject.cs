@@ -9,15 +9,26 @@ public class MovableObject : MonoBehaviour
     protected float speed = 1;
 
     protected Vector2 direction = new Vector2(0, 0);
-    protected Vector2 movement;
+    protected Vector2? target = null;
 
     protected virtual void Update()
     {
-        movement = direction * speed;
     }
     
-    protected void FixedUpdate() 
+    protected void FixedUpdate()
     {
-        rb.MovePosition(rb.position + movement * Time.fixedDeltaTime);
+        Vector2 targetPosition;
+        if (target != null)
+        {
+            targetPosition = Vector2.MoveTowards(rb.position, target.Value, speed * Time.fixedDeltaTime);
+            direction = targetPosition - rb.position;
+        }
+        else
+        {
+            var movement = direction * speed;
+            targetPosition = rb.position + movement * Time.fixedDeltaTime;
+        }
+
+        rb.MovePosition(targetPosition);
     }   
 }
