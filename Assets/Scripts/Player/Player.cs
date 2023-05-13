@@ -9,6 +9,9 @@ public class Player : MonoBehaviour
     public delegate void AttackDelegate(Player player);
 
     public AttackDelegate onAttack;
+    public AttackDelegate onHideInGrass;
+    public AttackDelegate afterHideInGrass;
+    public AttackDelegate onMeetHuman;
     
     [SerializeField]
     private Rigidbody2D rb;
@@ -33,6 +36,11 @@ public class Player : MonoBehaviour
     private int currentScore = 0;
     private int recordValueForFoodCounter;
     private int health = 10;
+    
+    private static readonly int AnimatorAttributeState = Animator.StringToHash("State");
+    private static readonly int AnimatorAttributeSpeed = Animator.StringToHash("Speed");
+    private static readonly int AnimatorAttributeDirectionX = Animator.StringToHash("DirectionX");
+    private static readonly int AnimatorAttributeLastDirectionX = Animator.StringToHash("LastDirectionX");
 
     public int Health { get => health; }
     public int Energy { get => energy.GetEnergyValue(); }
@@ -41,11 +49,6 @@ public class Player : MonoBehaviour
 
     private const int MaxHealth = 10;
 
-    private const string AnimatorAttributeState = "State";
-    private const string AnimatorAttributeSpeed = "Speed";
-    private const string AnimatorAttributeDirectionX = "DirectionX";
-    private const string AnimatorAttributeLastDirectionX = "LastDirectionX";
-    
     private void Start()
     {
         recordValueForFoodCounter = PlayerRatingService.GetRecordFoodCounter();
@@ -153,15 +156,6 @@ public class Player : MonoBehaviour
 
     public void DieEvent() 
     {
-        // switch (currentState)
-        // {
-        //     case PlayerState.Dead:
-        //     case PlayerState.Dying:
-        //         break;
-        //     default:
-        //         break;
-        // }
-
         PlayerRatingService.AddRecord(currentScore);
         Destroy(gameObject);
         GameLevelNavigation.GameOver();
@@ -206,11 +200,29 @@ public class Player : MonoBehaviour
 
     public void EnableAttackMode()
     {
-        IfNotDyingSetState(PlayerState.Attack);
+        /*
+         * еда - атака
+         * нет еды и куст - спрятаться
+         * человек - атака или игра (зависит от очков человека)
+         */
+        
         if (onAttack != null)
         {
+            IfNotDyingSetState(PlayerState.Attack);
             onAttack.Invoke(this);
-            // Eat(result.energyPoints, result.healthPoints);
+        } 
+        else if (onHideInGrass != null)
+        {
+            IfNotDyingSetState(PlayerState.Hidden);
+            onHideInGrass.Invoke(this);
+            if (afterHideInGrass != null)
+            {
+                afterHideInGrass.Invoke(this);
+            }
+        } 
+        else if (onMeetHuman != null)
+        {
+            onMeetHuman.Invoke(this);
         }
     }
 

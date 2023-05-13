@@ -75,16 +75,16 @@ public class Female : MonoBehaviour, IPlayerTriggered
                 break;
         } 
         
-        player.onAttack += OnAttack;
+        player.onMeetHuman += OnMeetHuman;
     }
 
     public void OnPlayerTriggerExit(Player player, PlayerState playerState)
     {
         state = FemaleState.Idle;
-        player.onAttack -= OnAttack;
+        player.onMeetHuman -= OnMeetHuman;
     }
 
-    private void OnAttack(Player player)
+    private void OnMeetHuman(Player player)
     {
         state = FemaleState.Cry;
     }

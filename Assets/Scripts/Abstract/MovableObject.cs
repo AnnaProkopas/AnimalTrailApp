@@ -11,10 +11,6 @@ public class MovableObject : MonoBehaviour
     protected Vector2 direction = new Vector2(0, 0);
     protected Vector2? target = null;
 
-    protected virtual void Update()
-    {
-    }
-    
     protected void FixedUpdate()
     {
         Vector2 targetPosition;

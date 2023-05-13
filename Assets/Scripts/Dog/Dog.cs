@@ -39,7 +39,7 @@ public class Dog : MovableObject, IPlayerTriggered
         return gameObject;
     }
     
-    protected override void Update()
+    protected void Update()
     {
         switch (currentState)
         {
@@ -69,19 +69,18 @@ public class Dog : MovableObject, IPlayerTriggered
     {
         restoring = true;
 
-        while (restoring && enemy != null && currentState == DogState.Attacking) 
+        while (restoring && enemy != null && enemy.State != PlayerState.Hidden && currentState == DogState.Attacking) 
         {
             DateTime currentTime = DateTime.Now;
             DateTime counter = nextAttackTime;
             bool isAdding = false;
-            while (currentTime > counter) 
+            if (currentTime > counter) 
             {
-                    isAdding = true;
-
-                    enemy.OnStartTakingDamage(1);
-                    
-                    DateTime timeToSub = lastChangedTime > counter ? lastChangedTime : counter;
-                    counter = timeToSub.AddSeconds(RestoreDuration);
+                enemy.OnStartTakingDamage(1);
+                
+                DateTime timeToSub = lastChangedTime > counter ? lastChangedTime : counter;
+                counter = timeToSub.AddSeconds(RestoreDuration);
+                isAdding = true;
             }
 
             if (isAdding) 
@@ -121,6 +120,8 @@ public class Dog : MovableObject, IPlayerTriggered
                 {
                     SetState(DogState.Haunting);
                 }
+
+                player.afterHideInGrass += AfterHideInGrass;
                 break;
         }
     }
@@ -150,7 +151,7 @@ public class Dog : MovableObject, IPlayerTriggered
         player.OnFinishTakingDamage();
         SetState(DogState.Idle);
         enemy = null;
-        // player.onAttack -= OnAttack;
+        player.afterHideInGrass -= AfterHideInGrass;
     }
 
     private void SetState(DogState state)
@@ -203,5 +204,12 @@ public class Dog : MovableObject, IPlayerTriggered
     private float Norm(Vector2 position)
     {
         return position.x * position.x + position.y * position.y;
+    }
+    
+    private void AfterHideInGrass(Player player)
+    {
+        player.OnFinishTakingDamage();
+        RunFrom(player.GetPosition());
+        SetState(DogState.Walking);
     }
 }

@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 5603809043300646646}
   - component: {fileID: 5603809043300646641}
   - component: {fileID: 5603809043300646640}
-  - component: {fileID: 4087284379024466310}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -31,8 +30,8 @@ Transform:
   m_GameObject: {fileID: 5603809043300646634}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -6.13, y: -1.86, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 1.2, y: 1.2, z: 1.2}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -75,8 +74,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 1126234431
-  m_SortingLayer: 1
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: -1678317204, guid: 0eb86c67e81e4174fa451fd725ada1a7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -123,7 +122,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.03950442, y: -0.3212121}
+  m_Offset: {x: 0.019662239, y: -0.3212121}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -134,7 +133,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.19392407, y: 0.025512338}
+  m_Size: {x: 0.2526303, y: 0.025512338}
   m_EdgeRadius: 0
 --- !u!95 &5603809043300646641
 Animator:
@@ -175,19 +174,3 @@ MonoBehaviour:
   energy: {fileID: 0}
   speed: 2
   animator: {fileID: 5603809043300646641}
---- !u!70 &4087284379024466310
-CapsuleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5603809043300646634}
-  m_Enabled: 0
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0.045202173, y: -0.19639601}
-  m_Size: {x: 0.34869272, y: 0.34869272}
-  m_Direction: 0

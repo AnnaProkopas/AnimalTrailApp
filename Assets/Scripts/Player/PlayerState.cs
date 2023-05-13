@@ -8,5 +8,5 @@ public enum PlayerState
     Dying,
     Dead = 5,
     Sleep,
-    Hidden
+    Hidden = 7
 }

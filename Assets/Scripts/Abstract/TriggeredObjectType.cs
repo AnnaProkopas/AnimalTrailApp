@@ -6,5 +6,6 @@ public enum TriggeredObjectType: int
     Car,
     CarFoodSpawner,
     Garbage,
-    Dog
+    Dog,
+    Grass
 }

@@ -73,7 +73,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 791ada92e331ede498908dc9a573f2fc, type: 2}
+  m_Motion: {fileID: 7400000, guid: d76febc5f57d48a44ae2496cc2a2505d, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -157,7 +157,7 @@ AnimatorController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: MouseController
+  m_Name: GrayMouseController
   serializedVersion: 5
   m_AnimatorParameters:
   - m_Name: DirectionX

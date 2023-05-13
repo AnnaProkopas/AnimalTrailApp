@@ -22,9 +22,6 @@ public class Mouse : MovableObject, IPlayerTriggered
     [SerializeField]
     public int healthPoints = 1;
 
-    Vector2 directionSign;
-    float currentSpeed = 0;
-
     public void OnPlayerTriggerEnter(Player player, PlayerState playerState) 
     {
         switch (playerState)
@@ -45,7 +42,7 @@ public class Mouse : MovableObject, IPlayerTriggered
         player.onAttack -= OnAttack;
     }
 
-    protected override void Update()
+    protected void Update()
     {
         float absX = Mathf.Abs(direction.x);
         float absY = Mathf.Abs(direction.y);
@@ -63,9 +60,6 @@ public class Mouse : MovableObject, IPlayerTriggered
     private void RunAwayFrom(Vector2 playerPosition) 
     {
         direction = rb.position - playerPosition;
-        directionSign.x = Mathf.Max(0, Mathf.Sign(direction.x));
-        directionSign.y = Mathf.Sign(direction.y);
-        currentSpeed = speed;
     }
 
     private void OnAttack(Player player)

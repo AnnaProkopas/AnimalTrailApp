@@ -51,7 +51,7 @@ public class EnergyManager : MonoBehaviour
             DateTime currentTime = DateTime.Now;
             DateTime counter = nextEnergyTime;
             bool isAdding = false;
-            while (currentTime > counter) 
+            if (currentTime > counter) 
             {
                 if (TotalEnergy > 0) 
                 {
@@ -59,9 +59,6 @@ public class EnergyManager : MonoBehaviour
                     TotalEnergy--;
                     DateTime timeToSub = lastChangedTime > counter ? lastChangedTime : counter;
                     counter = AddDuration(timeToSub, restoreDuration);
-                } else 
-                {
-                    break;
                 }
             }
 
