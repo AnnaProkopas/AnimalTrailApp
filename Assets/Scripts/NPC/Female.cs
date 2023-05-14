@@ -94,7 +94,7 @@ public class Female : MonoBehaviour, IPlayerTriggered
             case PlayerState.LookAround:
                 if (countCakes > 0)
                 {
-                    Spawn(player.GetPosition() + new Vector2(1, 0));
+                    Spawn(player.GetPosition() + new Vector2(0, -1));
                     countCakes -= 1;
                 }
 

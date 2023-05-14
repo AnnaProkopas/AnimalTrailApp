@@ -8,6 +8,7 @@ public class SoundEffectHelper: MonoBehaviour
     public static SoundEffectHelper instance;
     
     [SerializeField] private AudioClip eatSound;
+    public bool enableSounds = true;
 
     private void Awake()
     {
@@ -26,6 +27,7 @@ public class SoundEffectHelper: MonoBehaviour
 
     private void MakeSound(AudioClip audioClip)
     {
-        AudioSource.PlayClipAtPoint(audioClip, transform.position);
+        if (enableSounds)
+            AudioSource.PlayClipAtPoint(audioClip, transform.position);
     }
 }
