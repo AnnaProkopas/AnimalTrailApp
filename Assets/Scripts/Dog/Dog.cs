@@ -13,10 +13,9 @@ public class Dog : MovableObject, IPlayerTriggered
 
     private const int AttackValue = 1;
     private const int RestoreDuration = 3;
-    
-    private readonly TriggeredObjectType type = TriggeredObjectType.Dog;
-    public TriggeredObjectType Type { get => type; }
-    
+
+    public TriggeredObjectType Type { get; } = TriggeredObjectType.Dog;
+
     [SerializeField]
     private Animator animator;
     
@@ -28,7 +27,11 @@ public class Dog : MovableObject, IPlayerTriggered
     private bool restoring = false;
     private DateTime nextAttackTime;
     private DateTime lastChangedTime;
-    
+    private static readonly int Speed = Animator.StringToHash("Speed");
+    private static readonly int DirectionX = Animator.StringToHash("DirectionX");
+    private static readonly int LastDirectionX = Animator.StringToHash("LastDirectionX");
+    private static readonly int State = Animator.StringToHash("State");
+
     public Vector3 GetPosition()
     {
         return transform.position;
@@ -59,10 +62,10 @@ public class Dog : MovableObject, IPlayerTriggered
             lastDirectionX = Mathf.Sign(direction.x);
         }
 
-        animator.SetFloat("Speed", speed);
+        animator.SetFloat(Speed, speed);
 
-        animator.SetFloat("DirectionX", Mathf.Sign(direction.x));
-        animator.SetFloat("LastDirectionX", lastDirectionX);
+        animator.SetFloat(DirectionX, Mathf.Sign(direction.x));
+        animator.SetFloat(LastDirectionX, lastDirectionX);
     }
     
     private IEnumerator RestoreRoutine() 
@@ -160,15 +163,15 @@ public class Dog : MovableObject, IPlayerTriggered
         switch (state)
         {
             case DogState.Idle:
-                animator.SetInteger("State", SimpleAnimate);
+                animator.SetInteger(State, SimpleAnimate);
                 speed = 0;
                 break;
             case DogState.Walking:
-                animator.SetInteger("State", SimpleAnimate);
+                animator.SetInteger(State, SimpleAnimate);
                 speed = walkingSpeed;
                 break;
             case DogState.Attacking:
-                animator.SetInteger("State", AttackAnimate);
+                animator.SetInteger(State, AttackAnimate);
                 speed = 0;
                 
                 lastChangedTime = DateTime.Now;
@@ -176,7 +179,7 @@ public class Dog : MovableObject, IPlayerTriggered
                 StartCoroutine(RestoreRoutine());
                 break;
             case DogState.Haunting:
-                animator.SetInteger("State", AttackAnimate);
+                animator.SetInteger(State, AttackAnimate);
                 speed = hauntingSpeed;
                 
                 RunTo(enemy.GetPosition());

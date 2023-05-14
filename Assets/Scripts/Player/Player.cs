@@ -1,17 +1,18 @@
 using System;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using Random = System.Random;
 
 public class Player : MonoBehaviour
 {
     public delegate void AttackDelegate(Player player);
+    public delegate void SetActiveDelegate(bool active);
 
     public AttackDelegate onAttack;
     public AttackDelegate onHideInGrass;
     public AttackDelegate afterHideInGrass;
     public AttackDelegate onMeetHuman;
+    public SetActiveDelegate setActiveGreenJoyButton;
     
     [SerializeField]
     private Rigidbody2D rb;
@@ -36,6 +37,8 @@ public class Player : MonoBehaviour
     private int currentScore = 0;
     private int recordValueForFoodCounter;
     private int health = 10;
+    private float humanPoint = .0f;
+    private Random rnd;
     
     private static readonly int AnimatorAttributeState = Animator.StringToHash("State");
     private static readonly int AnimatorAttributeSpeed = Animator.StringToHash("Speed");
@@ -52,6 +55,7 @@ public class Player : MonoBehaviour
     private void Start()
     {
         recordValueForFoodCounter = PlayerRatingService.GetRecordFoodCounter();
+        rnd = new Random();
     }
 
     private void Update()
@@ -149,6 +153,11 @@ public class Player : MonoBehaviour
         }
     }
 
+    private void ChangeHumanPoint(float value)
+    {
+        humanPoint = Mathf.Min(humanPoint + value, 1f);
+    }
+
     public Vector2 GetPosition() 
     {
         return rb.position;
@@ -176,7 +185,8 @@ public class Player : MonoBehaviour
     
     public void EatJunkFood(int energyPoints, int healthPoints)
     {
-        Eat(energyPoints, healthPoints); 
+        Eat(energyPoints, healthPoints);
+        ChangeHumanPoint(0.1f);
     }
 
     public void OnEnergyIsOver()
@@ -200,12 +210,6 @@ public class Player : MonoBehaviour
 
     public void EnableAttackMode()
     {
-        /*
-         * еда - атака
-         * нет еды и куст - спрятаться
-         * человек - атака или игра (зависит от очков человека)
-         */
-        
         if (onAttack != null)
         {
             IfNotDyingSetState(PlayerState.Attack);
@@ -215,13 +219,19 @@ public class Player : MonoBehaviour
         {
             IfNotDyingSetState(PlayerState.Hidden);
             onHideInGrass.Invoke(this);
-            if (afterHideInGrass != null)
-            {
-                afterHideInGrass.Invoke(this);
-            }
+            afterHideInGrass?.Invoke(this);
         } 
         else if (onMeetHuman != null)
         {
+            // Если дружелюбен к человеку
+            if (humanPoint * 10 < rnd.Next(10))
+            {
+                IfNotDyingSetState(PlayerState.LookAround);
+            }
+            else // Если нейтрален=негативен к человеку
+            {
+                IfNotDyingSetState(PlayerState.Attack);
+            }
             onMeetHuman.Invoke(this);
         }
     }
@@ -239,5 +249,10 @@ public class Player : MonoBehaviour
         energy.Restart(loadedEnergy);
         currentScore = score;
         currentState = state;
+    }
+
+    public void SetActiveGreenJoyButton(bool active)
+    {
+        setActiveGreenJoyButton?.Invoke(active);
     }
 }

@@ -22,6 +22,10 @@ public class Mouse : MovableObject, IPlayerTriggered
     [SerializeField]
     public int healthPoints = 1;
 
+    private static readonly int Speed = Animator.StringToHash("Speed");
+    private static readonly int DirectionX = Animator.StringToHash("DirectionX");
+    private static readonly int DirectionY = Animator.StringToHash("DirectionY");
+
     public void OnPlayerTriggerEnter(Player player, PlayerState playerState) 
     {
         switch (playerState)
@@ -47,13 +51,13 @@ public class Mouse : MovableObject, IPlayerTriggered
         float absX = Mathf.Abs(direction.x);
         float absY = Mathf.Abs(direction.y);
 
-        animator.SetFloat("Speed", absX + absY);
+        animator.SetFloat(Speed, absX + absY);
 
         if (absX > absY) 
         {
-            animator.SetFloat("DirectionX", Mathf.Sign(direction.x));
+            animator.SetFloat(DirectionX, Mathf.Sign(direction.x));
         } else {
-            animator.SetFloat("DirectionY", Mathf.Sign(direction.y));
+            animator.SetFloat(DirectionY, Mathf.Sign(direction.y));
         }
     }
 

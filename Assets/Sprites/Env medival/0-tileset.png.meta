@@ -4685,6 +4685,90 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: 0-tileset_217
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 51ca948f125119a499056ef80e28714f
+      internalID: -591908555
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 0-tileset_218
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 09809055f25af184db0b5e6bb04f3661
+      internalID: -560571651
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 0-tileset_219
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 12
+        height: 16
+      alignment: 9
+      pivot: {x: 0.3, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 302fe06c2b533ee4a92039d69e3d9e06
+      internalID: 1052252646
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 0-tileset_220
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 59363fa24ef40f046bed674d76c03a06
+      internalID: -1918803844
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -4720,6 +4804,7 @@ TextureImporter:
       0-tileset_211: 1285851253
       0-tileset_67: 1455142073
       0-tileset_146: -1194188840
+      0-tileset_220: -1918803844
       0-tileset_42: 1956649554
       0-tileset_152: -1684360079
       0-tileset_112: -319996749
@@ -4728,6 +4813,7 @@ TextureImporter:
       0-tileset_187: -380372556
       0-tileset_41: -1894738554
       0-tileset_189: -964235960
+      0-tileset_219: 1052252646
       0-tileset_69: -905894395
       0-tileset_157: -1825922754
       0-tileset_179: 90475214
@@ -4807,6 +4893,7 @@ TextureImporter:
       0-tileset_17: -816996159
       0-tileset_81: -451661893
       0-tileset_52: -368345856
+      0-tileset_218: -560571651
       0-tileset_186: 633277236
       0-tileset_215: 511011164
       0-tileset_33: 1846203229
@@ -4865,6 +4952,7 @@ TextureImporter:
       0-tileset_193: 1564400845
       0-tileset_204: -1426664484
       0-tileset_147: -1158220045
+      0-tileset_217: -591908555
       0-tileset_51: 1603890598
       0-tileset_36: -1172380224
       0-tileset_169: 148776445

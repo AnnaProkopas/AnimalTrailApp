@@ -28,8 +28,8 @@ public class Female : MonoBehaviour, IPlayerTriggered
     private FemaleState state = FemaleState.Idle;
     private int countCakes = 1;
     
-    private const string AnimatorAttributeState = "state";
-    private const string AnimatorAttributeRight = "right";
+    private static readonly int AnimatorAttributeState = Animator.StringToHash("state");
+    private static readonly int AnimatorAttributeRight = Animator.StringToHash("right");
 
     void Update()
     {
@@ -86,7 +86,20 @@ public class Female : MonoBehaviour, IPlayerTriggered
 
     private void OnMeetHuman(Player player)
     {
-        state = FemaleState.Cry;
+        switch (player.State)
+        {
+            case PlayerState.Attack:
+                state = FemaleState.Cry;
+                break;
+            case PlayerState.LookAround:
+                if (countCakes > 0)
+                {
+                    Spawn(player.GetPosition() + new Vector2(1, 0));
+                    countCakes -= 1;
+                }
+
+                break;
+        }
     }
 
     private void Spawn(Vector2 position) 

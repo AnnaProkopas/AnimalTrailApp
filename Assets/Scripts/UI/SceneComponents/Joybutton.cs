@@ -1,10 +1,18 @@
+using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
 public class Joybutton : MonoBehaviour, IPointerUpHandler, IPointerDownHandler
 {
-    [SerializeField] 
-    private Player player;
+    
+    [SerializeField] private Player player;
+
+    [SerializeField] private GameObject greenInputButton;
+
+    private void Start()
+    {
+        player.setActiveGreenJoyButton += SetEnableInputButton;
+    }
 
     public void OnPointerDown(PointerEventData eventData)
     {
@@ -14,5 +22,10 @@ public class Joybutton : MonoBehaviour, IPointerUpHandler, IPointerDownHandler
     public void OnPointerUp(PointerEventData eventData)
     {
         player.DisableAttackMode();
+    }
+
+    private void SetEnableInputButton(bool active)
+    {
+        greenInputButton.SetActive(active);
     }
 }
