@@ -1,9 +1,10 @@
+using System;
 using JetBrains.Annotations;
 using UnityEngine;
 
 public class Female : MonoBehaviour, IPlayerTriggered
 {
-    private readonly TriggeredObjectType type = TriggeredObjectType.Default;
+    private readonly TriggeredObjectType type = TriggeredObjectType.Human;
 
     public TriggeredObjectType Type { get => type; }
 
@@ -16,12 +17,10 @@ public class Female : MonoBehaviour, IPlayerTriggered
         return gameObject;
     }
     
-    [SerializeField] 
-    private Animator animator;
-    [SerializeField]
-    private Rigidbody2D rb;
-    [SerializeField] 
-    private GameObject cake;
+    [SerializeField] private Animator animator;
+    [SerializeField] private Rigidbody2D rb;
+    [SerializeField] private GameObject cake;
+    [SerializeField] private int maxCountCakes;
         
     [CanBeNull] private Player observedObject;
 
@@ -30,6 +29,11 @@ public class Female : MonoBehaviour, IPlayerTriggered
     
     private static readonly int AnimatorAttributeState = Animator.StringToHash("state");
     private static readonly int AnimatorAttributeRight = Animator.StringToHash("right");
+
+    private void Start()
+    {
+        countCakes = maxCountCakes;
+    }
 
     void Update()
     {
@@ -82,6 +86,7 @@ public class Female : MonoBehaviour, IPlayerTriggered
     {
         state = FemaleState.Idle;
         player.onMeetHuman -= OnMeetHuman;
+        countCakes = maxCountCakes;
     }
 
     private void OnMeetHuman(Player player)

@@ -24,6 +24,7 @@ public class Player : MonoBehaviour
     private Text currentScoreText;
     [SerializeField]
     private EnergyManager energy;
+    [SerializeField]private HumanPoints humanPoints;
     
     [SerializeField]
     private float speed;
@@ -37,7 +38,6 @@ public class Player : MonoBehaviour
     private int currentScore = 0;
     private int recordValueForFoodCounter;
     private int health = 10;
-    private float humanPoint = .0f;
     private Random rnd;
     
     private static readonly int AnimatorAttributeState = Animator.StringToHash("State");
@@ -155,7 +155,7 @@ public class Player : MonoBehaviour
 
     private void ChangeHumanPoint(float value)
     {
-        humanPoint = Mathf.Min(humanPoint + value, 1f);
+        humanPoints.Plus(value);
     }
 
     public Vector2 GetPosition() 
@@ -224,7 +224,7 @@ public class Player : MonoBehaviour
         else if (onMeetHuman != null)
         {
             // Если дружелюбен к человеку
-            if (humanPoint * 10 < rnd.Next(10))
+            if (humanPoints.Value * 10 < rnd.Next(10))
             {
                 IfNotDyingSetState(PlayerState.LookAround);
             }
@@ -241,9 +241,10 @@ public class Player : MonoBehaviour
         IfNotDyingSetState(PlayerState.Idle);
     }
 
-    public void UpdateOnLevelLoad(Vector3 position, int loadedHealth, int loadedEnergy, int score, int humanPoints, PlayerState state)
+    public void UpdateOnLevelLoad(Vector3 position, int loadedHealth, int loadedEnergy, int score, float humanPoints, PlayerState state)
     {
         transform.position = position;
+        this.humanPoints.Value = humanPoints;
         health = loadedHealth;
         healthText.HiddenChange(loadedHealth);
         energy.Restart(loadedEnergy);
