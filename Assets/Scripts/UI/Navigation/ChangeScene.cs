@@ -5,12 +5,12 @@ public class ChangeScene : MonoBehaviour
 {
     public void LoadScene(int sceneID) 
     {
-        CrossSceneStaticContainer.addScene(SceneManager.GetActiveScene().buildIndex);
+        StaticStore.AddScene(SceneManager.GetActiveScene().buildIndex);
         SceneManager.LoadScene(sceneID);
     }
 
     public void LoadPreviousScene()
     {
-        SceneManager.LoadScene(CrossSceneStaticContainer.popSceneId());
+        SceneManager.LoadScene(StaticStore.PopSceneId());
     }
 }

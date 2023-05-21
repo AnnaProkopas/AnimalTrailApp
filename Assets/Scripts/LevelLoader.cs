@@ -10,7 +10,12 @@ using UnityEngine.SceneManagement;
 public class LevelLoader: MonoBehaviour
 {
     private const string HasSavedLevelField = "has_saved_level";
-    private static readonly HashSet<TriggeredObjectType> IgnoreTypes = new HashSet<TriggeredObjectType> { TriggeredObjectType.CarFoodSpawner, TriggeredObjectType.Default };
+    private static readonly HashSet<TriggeredObjectType> IgnoreTypes = new HashSet<TriggeredObjectType>
+    {
+        TriggeredObjectType.CarFoodSpawner, 
+        TriggeredObjectType.Default,
+        TriggeredObjectType.Grass
+    };
 
     private void Start()
     {
@@ -113,7 +118,7 @@ public class StoredLevel
     public int playerHealth;
     public int playerEnergy;
     public int playerScore;
-    public int playerHumanPoints;
+    public float playerHumanPoints;
     public int playerState;
     
     public StoredLevel()

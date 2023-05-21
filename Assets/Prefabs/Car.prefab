@@ -221,5 +221,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   foods:
-  - {fileID: 8084442375423665382, guid: 2b9372d4c518e154b847c6a49084a096, type: 3}
   - {fileID: 3079646118903106389, guid: c5f27fd631a0d96439f86cf3b094e4cb, type: 3}
+  - {fileID: 8084442375423665382, guid: 2b9372d4c518e154b847c6a49084a096, type: 3}
