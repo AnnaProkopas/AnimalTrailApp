@@ -66,6 +66,30 @@
       <ru>Настройки</ru>
     </Translations>
   </Record>
+  <Record Name="Settings_enable_sounds_key">
+    <Translations>
+      <en-us>sound:on</en-us>
+      <ru>звук:вкл</ru>
+    </Translations>
+  </Record>
+  <Record Name="Settings_disable_sounds_key">
+    <Translations>
+      <en-us>sound:off</en-us>
+      <ru>звук:выкл</ru>
+    </Translations>
+  </Record>
+  <Record Name="Settings_enable_music_key">
+    <Translations>
+      <en-us>music:on</en-us>
+      <ru>музыка:вкл</ru>
+    </Translations>
+  </Record>
+  <Record Name="Settings_disable_music_key">
+    <Translations>
+      <en-us>music:off</en-us>
+      <ru>музыка:выкл</ru>
+    </Translations>
+  </Record>
   <Record Name="Pause_continue_button_key">
     <Translations>
       <en-us>continue</en-us>

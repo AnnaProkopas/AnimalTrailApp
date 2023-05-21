@@ -30,7 +30,7 @@ public class LangManager : MonoBehaviour
 
     public static event LanguageChangeHandler OnLanguageChange;
     
-    public TextAsset textAsset;
+    [SerializeField] public TextAsset textAsset;
     
     public delegate void LanguageChangeHandler();
 
