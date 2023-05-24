@@ -3,7 +3,7 @@ using UnityEngine;
 public class Cake : MonoBehaviour, IPlayerTriggered
 {
     [SerializeField]
-    public int energyPoints = 8;
+    public int energyPoints = 6;
     [SerializeField]
     public int healthPoints = -1;
 

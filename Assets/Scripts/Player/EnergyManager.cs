@@ -8,7 +8,7 @@ public class EnergyManager : MonoBehaviour
     private Player player;
     
     [SerializeField]
-    private Points textEnergy;
+    private EnergyPoints energyPoints;
     [SerializeField]
     private int maxEnergy;
     
@@ -39,6 +39,7 @@ public class EnergyManager : MonoBehaviour
     private void Start() 
     {
         Restart(maxEnergy);
+        energyPoints.HiddenChange(TotalEnergy);
     }
 
     private IEnumerator RestoreRoutine() 
@@ -77,7 +78,7 @@ public class EnergyManager : MonoBehaviour
 
     private void UpdateEnergy() 
     { 
-        textEnergy.HiddenChange(TotalEnergy);
+        energyPoints.HiddenChange(TotalEnergy);
     }
 
     private DateTime AddDuration(DateTime time, int duration) 
@@ -94,7 +95,7 @@ public class EnergyManager : MonoBehaviour
 
         var prevEnergy = TotalEnergy;
         TotalEnergy = Math.Min(TotalEnergy + value, maxEnergy);
-        textEnergy.AnimatedChange(TotalEnergy, TotalEnergy - prevEnergy);
+        energyPoints.AnimatedChange(TotalEnergy, TotalEnergy - prevEnergy);
     }
 
     public void Subtract(int value) 
@@ -106,7 +107,7 @@ public class EnergyManager : MonoBehaviour
 
         var prevEnergy = TotalEnergy;
         TotalEnergy = Math.Max(TotalEnergy - value, 0);
-        textEnergy.AnimatedChange(TotalEnergy, TotalEnergy - prevEnergy);
+        energyPoints.AnimatedChange(TotalEnergy, TotalEnergy - prevEnergy);
 
         if (!restoring) 
         {
@@ -140,7 +141,7 @@ public class EnergyManager : MonoBehaviour
     public void Restart(int currentEnergy)
     {
         TotalEnergy = currentEnergy;
-        textEnergy.HiddenChange(currentEnergy);
+        energyPoints.HiddenChange(currentEnergy);
         lastChangedTime = DateTime.Now;
         nextEnergyTime = AddDuration(DateTime.Now, restoreDuration * 2);
 

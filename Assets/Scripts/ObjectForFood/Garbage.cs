@@ -5,7 +5,7 @@ public class Garbage : MonoBehaviour, IPlayerTriggered
     [SerializeField]
     public int energyPoints = 2;
     [SerializeField]
-    public int healthPoints = -3;
+    public int healthPoints = -2;
 
     private readonly TriggeredObjectType type = TriggeredObjectType.Garbage;
 

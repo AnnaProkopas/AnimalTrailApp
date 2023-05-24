@@ -14,22 +14,15 @@ public class Player : MonoBehaviour
     public AttackDelegate onMeetHuman;
     public SetActiveDelegate setActiveGreenJoyButton;
     
-    [SerializeField]
-    private Rigidbody2D rb;
-    [SerializeField]
-    private Joystick joystick;
-    [SerializeField]
-    private Points healthText;
-    [SerializeField]
-    private Text currentScoreText;
-    [SerializeField]
-    private EnergyManager energy;
-    [SerializeField]private HumanPoints humanPoints;
+    [SerializeField] private Rigidbody2D rb;
+    [SerializeField] private Joystick joystick;
+    [SerializeField] private HealthPoints healthPoints;
+    [SerializeField] private Text currentScoreText;
+    [SerializeField] private EnergyManager energy;
+    [SerializeField] private HumanPoints humanPoints;
     
-    [SerializeField]
-    private float speed;
-    [SerializeField]
-    private Animator animator;
+    [SerializeField] private float speed;
+    [SerializeField] private Animator animator;
 
     private PlayerState currentState;
     private Vector2 movement;
@@ -37,7 +30,7 @@ public class Player : MonoBehaviour
 
     private int currentScore = 0;
     private int recordValueForFoodCounter;
-    private int health = 10;
+    private int health = 6;
     private Random rnd;
     
     private static readonly int AnimatorAttributeState = Animator.StringToHash("State");
@@ -56,6 +49,7 @@ public class Player : MonoBehaviour
     {
         recordValueForFoodCounter = PlayerRatingService.GetRecordFoodCounter();
         rnd = new Random();
+        healthPoints.HiddenChange(health);
     }
 
     private void Update()
@@ -145,7 +139,7 @@ public class Player : MonoBehaviour
     private void ChangeHealth(int value) 
     {
         int newHealth = Math.Min(Math.Max(health + value, 0), MaxHealth);
-        healthText.AnimatedChange(newHealth, newHealth - health);
+        healthPoints.AnimatedChange(newHealth, newHealth - health);
         health = newHealth;
         if (IsReadyForDeath())
         {
@@ -246,7 +240,7 @@ public class Player : MonoBehaviour
         transform.position = position;
         this.humanPoints.Value = humanPoints;
         health = loadedHealth;
-        healthText.HiddenChange(loadedHealth);
+        healthPoints.HiddenChange(loadedHealth);
         energy.Restart(loadedEnergy);
         currentScore = score;
         currentState = state;

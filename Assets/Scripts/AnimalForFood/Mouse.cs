@@ -18,7 +18,7 @@ public class Mouse : MovableObject, IPlayerTriggered
     [SerializeField]
     private Animator animator;
     [SerializeField]
-    public int energyPoints = 5;
+    public int energyPoints = 4;
     [SerializeField]
     public int healthPoints = 1;
 
