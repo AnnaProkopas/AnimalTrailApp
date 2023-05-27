@@ -15,16 +15,14 @@ public class Mouse : MovableObject, IPlayerTriggered
         return gameObject;
     }
 
-    [SerializeField]
-    private Animator animator;
-    [SerializeField]
-    public int energyPoints = 4;
-    [SerializeField]
-    public int healthPoints = 1;
+    [SerializeField] private Animator animator;
+    [SerializeField] public int energyPoints = 4;
+    [SerializeField] public int healthPoints = 1;
 
     private static readonly int Speed = Animator.StringToHash("Speed");
     private static readonly int DirectionX = Animator.StringToHash("DirectionX");
     private static readonly int DirectionY = Animator.StringToHash("DirectionY");
+    private static readonly int LastDirX = Animator.StringToHash("LastDirX");
 
     public void OnPlayerTriggerEnter(Player player, PlayerState playerState) 
     {
@@ -52,6 +50,7 @@ public class Mouse : MovableObject, IPlayerTriggered
         float absY = Mathf.Abs(direction.y);
 
         animator.SetFloat(Speed, absX + absY);
+        animator.SetFloat(LastDirX, Mathf.Sign(lastDirectionX));
 
         if (absX > absY) 
         {

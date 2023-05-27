@@ -10,10 +10,13 @@ public class MovableObject : MonoBehaviour
 
     protected Vector2 direction = new Vector2(0, 0);
     protected Vector2? target = null;
+    protected float lastDirectionX = 1.0f;
 
     protected void FixedUpdate()
     {
         Vector2 targetPosition;
+
+        lastDirectionX = direction.x;
         if (target != null)
         {
             targetPosition = Vector2.MoveTowards(rb.position, target.Value, speed * Time.fixedDeltaTime);

@@ -64,16 +64,15 @@ public class LevelLoader: MonoBehaviour
             var typeToObject = new Dictionary<TriggeredObjectType, GameObject>();
             foreach (var triggeredObject in FindInterfacesOfType<IPlayerTriggered>(true))
             {
-                var triggeredGameObject = triggeredObject.GetGameObject();
-                triggeredGameObject.SetActive(false);
-                
-                if (!IgnoreTypes.Contains(triggeredObject.Type) && !typeToObject.ContainsKey(triggeredObject.Type))
+                if (!IgnoreTypes.Contains(triggeredObject.Type))
                 {
-                    typeToObject.Add(triggeredObject.Type, triggeredGameObject);
-                }
-                else
-                {
-                    Destroy(triggeredGameObject);
+                    var triggeredGameObject = triggeredObject.GetGameObject();
+                    triggeredGameObject.SetActive(false);
+                    
+                    if (!typeToObject.ContainsKey(triggeredObject.Type))
+                        typeToObject.Add(triggeredObject.Type, triggeredGameObject);
+                    else
+                        Destroy(triggeredGameObject);
                 }
             }
             
@@ -89,9 +88,7 @@ public class LevelLoader: MonoBehaviour
             }
 
             foreach (var gmObj in typeToObject.Values)
-            {
                 Destroy(gmObj);
-            }
             
             GetPlayer().UpdateOnLevelLoad(level.playerPosition.Get(), level.playerHealth, level.playerEnergy, level.playerScore, level.playerHumanPoints, (PlayerState)level.playerState);
         }
