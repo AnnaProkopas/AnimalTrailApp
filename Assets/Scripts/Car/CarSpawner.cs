@@ -3,14 +3,10 @@ using UnityEngine;
 
 public class CarSpawner : MonoBehaviour
 {
-    [SerializeField]
-    private GameObject car;
-    [SerializeField]
-    private GameObject worldBoundary;
-    [SerializeField]
-    private Transform spawnPoint;
-    [SerializeField]
-    private float speed = 4.0f;
+    [SerializeField] private GameObject[] cars;
+    [SerializeField] private GameObject worldBoundary;
+    [SerializeField] private Transform spawnPoint;
+    [SerializeField] private float speed = 4.0f;
     
     [CanBeNull] private GameObject currentCar;
     private float maxPointX;
@@ -31,7 +27,8 @@ public class CarSpawner : MonoBehaviour
         if (currentCar == null || currentCar.transform.position.x  > maxPointX) 
         {
             if (currentCar != null) Destroy(currentCar);
-            currentCar = Instantiate(car, spawnPoint.position, Quaternion.identity);
+            int carInd = Random.Range(0, cars.Length);
+            currentCar = Instantiate(cars[carInd], spawnPoint.position, Quaternion.identity);
         }
     }
 }
