@@ -1,8 +1,7 @@
-using System;
 using JetBrains.Annotations;
 using UnityEngine;
 
-public class Female : MonoBehaviour, IPlayerTriggered
+public class Female : MonoBehaviour, IPlayerTriggered, ISavable
 {
     private readonly TriggeredObjectType type = TriggeredObjectType.Human;
 

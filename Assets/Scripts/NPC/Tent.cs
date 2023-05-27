@@ -1,8 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class Tent : MonoBehaviour, IPlayerTriggered
+public class Tent : MonoBehaviour, IPlayerTriggered, ISavable
 {
     private readonly TriggeredObjectType type = TriggeredObjectType.Default;
 

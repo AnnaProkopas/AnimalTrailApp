@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Car : MovableObject, IPlayerTriggered, INPCAnimalTriggered
+public class Car : MovableObject, IPlayerTriggered, INPCAnimalTriggered, ISavable
 {
     private readonly TriggeredObjectType type = TriggeredObjectType.Car;
 

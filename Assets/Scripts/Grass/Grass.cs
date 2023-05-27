@@ -2,16 +2,7 @@ using UnityEngine;
 
 public class Grass : MonoBehaviour, IPlayerTriggered
 {
-    public TriggeredObjectType Type { get => TriggeredObjectType.Grass; }
-    public Vector3 GetPosition()
-    {
-        return transform.position;
-    }
-
-    public GameObject GetGameObject()
-    {
-        return gameObject;
-    }
+    // TriggeredObjectType.Grass
 
     public void OnPlayerTriggerEnter(Player player, PlayerState state)
     {

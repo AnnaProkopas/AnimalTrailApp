@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Mouse : MovableObject, IPlayerTriggered
+public class Mouse : MovableObject, IPlayerTriggered, ISavable
 {
     private readonly TriggeredObjectType type = TriggeredObjectType.Mouse;
 
@@ -50,7 +50,7 @@ public class Mouse : MovableObject, IPlayerTriggered
         float absY = Mathf.Abs(direction.y);
 
         animator.SetFloat(Speed, absX + absY);
-        animator.SetFloat(LastDirX, Mathf.Sign(lastDirectionX));
+        animator.SetFloat(LastDirX, lastDirectionX);
 
         if (absX > absY) 
         {

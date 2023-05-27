@@ -92,7 +92,6 @@ public class Player : MonoBehaviour
         IPlayerTriggered otherObject = other.gameObject.GetComponent<IPlayerTriggered>();
         if (otherObject != null) 
         {
-            Debug.Log((otherObject.Type));
             otherObject.OnPlayerTriggerEnter(this, currentState);
         }
     }
@@ -164,22 +163,22 @@ public class Player : MonoBehaviour
         GameLevelNavigation.GameOver();
     }
 
-    private void Eat(int energyPoints, int healthPoints)
+    private void Eat(int energyPoints, int healthPointsValue)
     {
         energy.Add(energyPoints);
-        ChangeHealth(healthPoints);
+        ChangeHealth(healthPointsValue);
         SoundEffectHelper.instance.MakeEatSound();
     }
     
-    public void EatHealthyFood(int energyPoints, int healthPoints)
+    public void EatHealthyFood(int energyPoints, int healthPointsValue)
     {
-        Eat(energyPoints, healthPoints); 
+        Eat(energyPoints, healthPointsValue); 
         IncreaseFoodCounter();
     }
     
-    public void EatJunkFood(int energyPoints, int healthPoints)
+    public void EatJunkFood(int energyPoints, int healthPointsValue)
     {
-        Eat(energyPoints, healthPoints);
+        Eat(energyPoints, healthPointsValue);
         ChangeHumanPoint(0.1f);
     }
 

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Cake : MonoBehaviour, IPlayerTriggered
+public class Cake : MonoBehaviour, IPlayerTriggered, ISavable
 {
     [SerializeField]
     public int energyPoints = 6;

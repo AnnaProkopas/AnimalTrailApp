@@ -2,12 +2,8 @@ using UnityEngine;
 
 public class CarSnackSpawner : MonoBehaviour, IPlayerTriggered
 {
-    [SerializeField]
-    private GameObject[] foods;
-
-    private readonly TriggeredObjectType type = TriggeredObjectType.CarFoodSpawner;
-
-    public TriggeredObjectType Type { get => type; }
+    // TriggeredObjectType.CarFoodSpawner
+    [SerializeField] private GameObject[] foods;
 
     public Vector3 GetPosition()
     {

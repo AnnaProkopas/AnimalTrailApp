@@ -31,7 +31,7 @@ public class LevelLoader: MonoBehaviour
     {
         StoredLevel level = new StoredLevel();
         
-        foreach (var triggeredObject in FindInterfacesOfType<IPlayerTriggered>())
+        foreach (var triggeredObject in FindInterfacesOfType<ISavable>())
         {
             if (!IgnoreTypes.Contains(triggeredObject.Type))
             {
@@ -62,7 +62,7 @@ public class LevelLoader: MonoBehaviour
         if (hasSavedLevel == 1)
         {
             var typeToObject = new Dictionary<TriggeredObjectType, GameObject>();
-            foreach (var triggeredObject in FindInterfacesOfType<IPlayerTriggered>(true))
+            foreach (var triggeredObject in FindInterfacesOfType<ISavable>(true))
             {
                 if (!IgnoreTypes.Contains(triggeredObject.Type))
                 {

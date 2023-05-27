@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using UnityEngine;
 
-public class Dog : MovableObject, IPlayerTriggered
+public class Dog : MovableObject, IPlayerTriggered, ISavable
 {
     private const int SimpleAnimate = 0;
     private const int AttackAnimate = 1;
@@ -20,11 +20,10 @@ public class Dog : MovableObject, IPlayerTriggered
     private Animator animator;
     
     private DogState currentState = DogState.Idle;
-    private float lastDirectionX = 0;
 
-    private Player enemy = null;
+    private Player enemy;
     
-    private bool restoring = false;
+    private bool restoring;
     private DateTime nextAttackTime;
     private DateTime lastChangedTime;
     private static readonly int Speed = Animator.StringToHash("Speed");
@@ -57,18 +56,13 @@ public class Dog : MovableObject, IPlayerTriggered
                 break;
         }
 
-        if (speed != 0)
-        {
-            lastDirectionX = Mathf.Sign(direction.x);
-        }
-
         animator.SetFloat(Speed, speed);
 
         animator.SetFloat(DirectionX, Mathf.Sign(direction.x));
         animator.SetFloat(LastDirectionX, lastDirectionX);
     }
     
-    private IEnumerator RestoreRoutine() 
+    private IEnumerator RestoreAttackRoutine() 
     {
         restoring = true;
 
@@ -79,7 +73,7 @@ public class Dog : MovableObject, IPlayerTriggered
             bool isAdding = false;
             if (currentTime > counter) 
             {
-                enemy.OnStartTakingDamage(1);
+                enemy.OnStartTakingDamage(AttackValue);
                 
                 DateTime timeToSub = lastChangedTime > counter ? lastChangedTime : counter;
                 counter = timeToSub.AddSeconds(RestoreDuration);
@@ -176,7 +170,7 @@ public class Dog : MovableObject, IPlayerTriggered
                 
                 lastChangedTime = DateTime.Now;
                 nextAttackTime = DateTime.Now;
-                StartCoroutine(RestoreRoutine());
+                StartCoroutine(RestoreAttackRoutine());
                 break;
             case DogState.Haunting:
                 animator.SetInteger(State, AttackAnimate);

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Garbage : MonoBehaviour, IPlayerTriggered
+public class Garbage : MonoBehaviour, IPlayerTriggered, ISavable
 {
     [SerializeField]
     public int energyPoints = 2;
