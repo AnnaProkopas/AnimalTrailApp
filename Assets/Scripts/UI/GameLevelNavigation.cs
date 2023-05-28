@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -9,6 +7,24 @@ public class GameLevelNavigation : MonoBehaviour
     [SerializeField] private EnergyManager energyManager;
     [SerializeField] private GameObject gameButtons;
 
+    void OnApplicationPause(bool pauseStatus)
+    {
+        if (pauseStatus)
+        {
+            Pause();
+            LevelLoader.Save();
+        }
+    }
+    
+    void OnApplicationFocus(bool hasFocus)
+    {
+        if (!hasFocus)
+        {
+            Pause();
+            LevelLoader.Save();
+        }
+    }
+    
     public void Pause()
     {
         pauseMenu.SetActive(true);
