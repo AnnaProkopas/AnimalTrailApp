@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 7902372664216220032}
   - component: {fileID: 8665218580719695781}
   - component: {fileID: 3965536565895089263}
-  - component: {fileID: 8636493760239683249}
   - component: {fileID: 4323697693723682964}
+  - component: {fileID: 2642531434766980610}
   m_Layer: 0
   m_Name: Sausage
   m_TagString: Untagged
@@ -107,20 +107,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &8636493760239683249
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4589540767838453360}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8e0fb06c313f6cd4194cd9aefb7ec92d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  energyPoints: 3
-  healthPoints: -1
 --- !u!61 &4323697693723682964
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -147,3 +133,17 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.5332279, y: 0.35692215}
   m_EdgeRadius: 0
+--- !u!114 &2642531434766980610
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4589540767838453360}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 689fadd15d41488ea5b2c687cf9f5e74, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  energyPoints: 3
+  healthPoints: -1

@@ -8,5 +8,7 @@ public enum TriggeredObjectType: int
     Garbage,
     Dog,
     Grass,
-    Human
+    Human,
+    GrayMouse,
+    Bird
 }
