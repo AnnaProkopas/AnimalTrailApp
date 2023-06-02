@@ -1,6 +1,5 @@
 ﻿using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class HighScoreTable : MonoBehaviour
 {
@@ -33,7 +32,7 @@ public class HighScoreTable : MonoBehaviour
 
     private void SetItemData(Transform entryTransform, ScoreRecord scoreItem)
     {
-        entryTransform.Find("levelTitle").GetComponent<TextMeshProUGUI>().text = scoreItem.level.ToString();
+        entryTransform.Find("levelTitle").GetComponent<TextMeshProUGUI>().text = (scoreItem.level + 1).ToString();
         entryTransform.Find("foodsTitle").GetComponent<TextMeshProUGUI>().text = scoreItem.value.ToString();
         entryTransform.Find("humansTitle").GetComponent<TextMeshProUGUI>().text = scoreItem.humans.ToString();
         entryTransform.Find("dateTitle").GetComponent<TextMeshProUGUI>().text = scoreItem.GetDateTime().ToString("dd.MM");

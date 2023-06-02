@@ -40,7 +40,7 @@ public class LevelLoader: MonoBehaviour
         }
 
         var player = GetPlayer();
-        level.SavePlayer(player.transform.position, player.Health, player.Energy, player.Score, 0, player.State);
+        level.SavePlayer(player.transform.position, player.Health, player.Energy, player.Score, player.JunkFoodScore, player.HumanPoints, player.State);
         
         BinaryFormatter bf = new BinaryFormatter();
         FileStream file = File.Create(Application.persistentDataPath + "/gamesave.save");
@@ -90,7 +90,7 @@ public class LevelLoader: MonoBehaviour
             foreach (var gmObj in typeToObject.Values)
                 Destroy(gmObj);
             
-            GetPlayer().UpdateOnLevelLoad(level.playerPosition.Get(), level.playerHealth, level.playerEnergy, level.playerScore, level.playerHumanPoints, (PlayerState)level.playerState);
+            GetPlayer().UpdateOnLevelLoad(level.playerPosition.Get(), level.playerHealth, level.playerEnergy, level.playerScore, level.playerJunkFoodScore, level.playerHumanPoints, (PlayerState)level.playerState);
         }
     }
 
@@ -115,6 +115,7 @@ public class StoredLevel
     public int playerHealth;
     public int playerEnergy;
     public int playerScore;
+    public int playerJunkFoodScore;
     public float playerHumanPoints;
     public int playerState;
     
@@ -123,9 +124,9 @@ public class StoredLevel
         triggeredObjects = new List<StoredObject>();
     }
     
-    public void SavePlayer(Vector3 position, int health, int energy, int score, int humanPoints, PlayerState state) 
-        => (playerPosition, playerHealth, playerEnergy, playerScore, playerHumanPoints, playerState) 
-            = (new StoredVector3(position), health, energy, score, humanPoints, (int)state);
+    public void SavePlayer(Vector3 position, int health, int energy, int score, int junkFoodScore, float humanPoints, PlayerState state) 
+        => (playerPosition, playerHealth, playerEnergy, playerScore, playerJunkFoodScore, playerHumanPoints, playerState) 
+            = (new StoredVector3(position), health, energy, score, junkFoodScore, humanPoints, (int)state);
 }
 
 [Serializable]

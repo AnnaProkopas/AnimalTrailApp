@@ -51,6 +51,7 @@ MonoBehaviour:
   animator: {fileID: 4476867514286275087}
   rb: {fileID: 7776448253363467351}
   cake: {fileID: 3079646118903106389, guid: c5f27fd631a0d96439f86cf3b094e4cb, type: 3}
+  maxCountCakes: 3
 --- !u!95 &4476867514286275087
 Animator:
   serializedVersion: 5

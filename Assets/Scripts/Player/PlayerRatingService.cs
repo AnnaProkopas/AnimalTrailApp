@@ -41,7 +41,7 @@ public class PlayerRatingService
         PlayerPrefs.SetInt(RatingRecordField, value);
     }
 
-    public static void AddRecord(int value, int humans = 0, int years = 0)
+    public static void AddRecord(int value, int humans, int years = 0)
     {
         ScoreRecord score = new ScoreRecord(value, humans, years);
         instance.scoreRecordList.Add(score);

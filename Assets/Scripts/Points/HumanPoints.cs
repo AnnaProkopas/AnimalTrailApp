@@ -1,6 +1,4 @@
-using System;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public class HumanPoints : MonoBehaviour
 {
@@ -34,7 +32,7 @@ public class HumanPoints : MonoBehaviour
     {
         if (currentState != state)
         {
-            animator.SetInteger(State, (int)state);
+            animator.SetFloat(State, (int)state);
             currentState = state;
         }
     }

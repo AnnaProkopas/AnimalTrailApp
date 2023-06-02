@@ -120,7 +120,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   energyPoints: 3
-  healthPoints: -2
+  healthPoints: -1
 --- !u!61 &4323697693723682964
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -29,6 +29,7 @@ public class Player : MonoBehaviour
     private int lastDirectionX = 0;
 
     private int currentScore = 0;
+    private int currentJunkFoodScore = 0;
     private int recordValueForFoodCounter;
     private int health = 6;
     private Random rnd;
@@ -41,6 +42,8 @@ public class Player : MonoBehaviour
     public int Health { get => health; }
     public int Energy { get => energy.GetEnergyValue(); }
     public int Score { get => currentScore; }
+    public int JunkFoodScore { get => currentJunkFoodScore; }
+    public float HumanPoints { get => humanPoints.Value; }
     public PlayerState State { get => currentState; }
 
     private const int MaxHealth = 10;
@@ -158,7 +161,7 @@ public class Player : MonoBehaviour
 
     public void DieEvent() 
     {
-        PlayerRatingService.AddRecord(currentScore);
+        PlayerRatingService.AddRecord(currentScore, currentScore);
         Destroy(gameObject);
         GameLevelNavigation.GameOver();
     }
@@ -180,6 +183,7 @@ public class Player : MonoBehaviour
     {
         Eat(energyPoints, healthPointsValue);
         ChangeHumanPoint(0.1f);
+        currentJunkFoodScore++;
     }
 
     public void OnEnergyIsOver()
@@ -191,6 +195,7 @@ public class Player : MonoBehaviour
     {
         ChangeHealth(-damage);
         IfNotDyingSetState(PlayerState.Wounded);
+        SoundEffectHelper.instance.MakeFallSound();
     }
 
     public void OnFinishTakingDamage()
@@ -220,12 +225,17 @@ public class Player : MonoBehaviour
             if (humanPoints.Value * 10 < rnd.Next(10))
             {
                 IfNotDyingSetState(PlayerState.LookAround);
+                ChangeHumanPoint(0.05f);
             }
             else // Если нейтрален=негативен к человеку
             {
                 IfNotDyingSetState(PlayerState.Attack);
             }
             onMeetHuman.Invoke(this);
+        }
+        else
+        {
+            IfNotDyingSetState(PlayerState.Attack);
         }
     }
 
@@ -234,14 +244,15 @@ public class Player : MonoBehaviour
         IfNotDyingSetState(PlayerState.Idle);
     }
 
-    public void UpdateOnLevelLoad(Vector3 position, int loadedHealth, int loadedEnergy, int score, float humanPoints, PlayerState state)
+    public void UpdateOnLevelLoad(Vector3 position, int loadedHealth, int loadedEnergy, int score, int junkFoodScore, float _humanPoints, PlayerState state)
     {
         transform.position = position;
-        this.humanPoints.Value = humanPoints;
+        humanPoints.Value = _humanPoints;
         health = loadedHealth;
         healthPoints.HiddenChange(loadedHealth);
         energy.Restart(loadedEnergy);
         currentScore = score;
+        currentJunkFoodScore = junkFoodScore;
         currentState = state;
     }
 

@@ -32,7 +32,7 @@
   </Record>
   <Record Name="Record_title_key">
     <Translations>
-      <en-us>HighScore</en-us>
+      <en-us>High scores</en-us>
       <ru>Рекорды</ru>
     </Translations>
   </Record>
@@ -50,8 +50,8 @@
   </Record>
   <Record Name="Record_humans_key">
     <Translations>
-      <en-us>people</en-us>
-      <ru>люди</ru>
+      <en-us>trash</en-us>
+      <ru>мусор</ru>
     </Translations>
   </Record>
   <Record Name="Record_date_key">
@@ -94,6 +94,30 @@
     <Translations>
       <en-us>continue</en-us>
       <ru>продолжить</ru>
+    </Translations>
+  </Record>
+  <Record Name="Awards_title_key">
+    <Translations>
+      <en-us>Awards</en-us>
+      <ru>Награды</ru>
+    </Translations>
+  </Record>
+  <Record Name="Awards_score_button_key">
+    <Translations>
+      <en-us>high scores</en-us>
+      <ru>рекорды</ru>
+    </Translations>
+  </Record>
+  <Record Name="Share_subject_key">
+    <Translations>
+      <en-us>game Animal trail</en-us>
+      <ru>игра Звериная тропа</ru>
+    </Translations>
+  </Record>
+  <Record Name="Share_message_key">
+    <Translations>
+      <en-us>Download: https://apps.rustore.ru/app/com.TrailMaker.AnimalTrail</en-us>
+      <ru>Скачать: https://apps.rustore.ru/app/com.TrailMaker.AnimalTrail</ru>
     </Translations>
   </Record>
 </Records>
