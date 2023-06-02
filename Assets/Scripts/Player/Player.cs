@@ -6,13 +6,13 @@ using Random = System.Random;
 public class Player : MonoBehaviour
 {
     public delegate void AttackDelegate(Player player);
-    public delegate void SetActiveDelegate(bool active);
+    public delegate void SetActiveDelegate(JoyButtonState active);
 
     public AttackDelegate onAttack;
     public AttackDelegate onHideInGrass;
     public AttackDelegate afterHideInGrass;
     public AttackDelegate onMeetHuman;
-    public SetActiveDelegate setActiveGreenJoyButton;
+    public SetActiveDelegate setActiveCustomJoyButton;
     
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private Joystick joystick;
@@ -96,6 +96,7 @@ public class Player : MonoBehaviour
         if (otherObject != null) 
         {
             otherObject.OnPlayerTriggerEnter(this, currentState);
+            SetActiveCustomJoyButton();
         }
     }
 
@@ -105,6 +106,7 @@ public class Player : MonoBehaviour
         if (otherObject != null) 
         {
             otherObject.OnPlayerTriggerExit(this, currentState);
+            SetActiveCustomJoyButton();
         }
     }
 
@@ -256,8 +258,23 @@ public class Player : MonoBehaviour
         currentState = state;
     }
 
-    public void SetActiveGreenJoyButton(bool active)
+    private void SetActiveCustomJoyButton()
     {
-        setActiveGreenJoyButton?.Invoke(active);
+        if (onAttack != null)
+        {
+            setActiveCustomJoyButton?.Invoke(JoyButtonState.Eat);
+        }
+        else if (onHideInGrass != null)
+        {
+            setActiveCustomJoyButton?.Invoke(JoyButtonState.Hide);
+        } 
+        else if (onMeetHuman != null)
+        {
+            setActiveCustomJoyButton?.Invoke(JoyButtonState.Human);
+        }
+        else
+        {
+            setActiveCustomJoyButton?.Invoke(JoyButtonState.Simple);
+        }
     }
 }

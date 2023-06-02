@@ -7,10 +7,12 @@ public class Joybutton : MonoBehaviour, IPointerUpHandler, IPointerDownHandler
     [SerializeField] private Player player;
 
     [SerializeField] private GameObject greenInputButton;
+    [SerializeField] private GameObject yellowInputButton;
+    [SerializeField] private GameObject redInputButton;
 
     private void Start()
     {
-        player.setActiveGreenJoyButton += SetEnableInputButton;
+        player.setActiveCustomJoyButton += SetEnableInputButton;
     }
 
     public void OnPointerDown(PointerEventData eventData)
@@ -23,8 +25,23 @@ public class Joybutton : MonoBehaviour, IPointerUpHandler, IPointerDownHandler
         player.DisableAttackMode();
     }
 
-    private void SetEnableInputButton(bool active)
+    private void SetEnableInputButton(JoyButtonState state)
     {
-        greenInputButton.SetActive(active);
+        greenInputButton.SetActive(false);
+        yellowInputButton.SetActive(false);
+        redInputButton.SetActive(false);
+
+        switch (state)
+        {
+            case JoyButtonState.Hide:
+                greenInputButton.SetActive(true);
+                break;
+            case JoyButtonState.Human:
+                yellowInputButton.SetActive(true);
+                break;
+            case JoyButtonState.Eat:
+                redInputButton.SetActive(true);
+                break;
+        }
     }
 }
