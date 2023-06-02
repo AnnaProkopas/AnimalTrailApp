@@ -8,6 +8,8 @@ public class SoundEffectHelper: MonoBehaviour
     public static SoundEffectHelper instance;
     
     [SerializeField] private AudioClip eatSound;
+    [SerializeField] private AudioClip fallSound;
+    [SerializeField] private AudioClip achieveSound;
     public bool enableSounds = true;
 
     private void Awake()
@@ -25,6 +27,16 @@ public class SoundEffectHelper: MonoBehaviour
     public void MakeEatSound()
     {
         MakeSound(eatSound);
+    }
+
+    public void MakeFallSound()
+    {
+        MakeSound(fallSound);
+    }
+    
+    public void MakeAchieveSound()
+    {
+        MakeSound(achieveSound);
     }
 
     private void MakeSound(AudioClip audioClip)
