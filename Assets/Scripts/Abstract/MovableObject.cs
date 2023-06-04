@@ -11,7 +11,7 @@ public class MovableObject : MonoBehaviour
     protected void FixedUpdate()
     {
         lastDirectionX = Mathf.Sign(direction.x);
-        var movement = direction * speed;
+        var movement = direction.normalized * speed;
         Vector2 targetPosition = rb.position + movement * Time.fixedDeltaTime;
 
         rb.MovePosition(targetPosition);

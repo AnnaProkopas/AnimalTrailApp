@@ -13,6 +13,8 @@ public class Dog : MovableObject, IPlayerTriggered, ISavable
 
     private const int AttackValue = (int)DamageValues.Dog;
     private const int RestoreDuration = 3;
+    
+    private Vector2 startPosition;
 
     public TriggeredObjectType Type { get; } = TriggeredObjectType.Dog;
 
@@ -40,19 +42,31 @@ public class Dog : MovableObject, IPlayerTriggered, ISavable
     {
         return gameObject;
     }
-    
+
+    private void Start()
+    {
+        startPosition = transform.position;
+    }
+
     protected void Update()
     {
         switch (currentState)
         {
             case DogState.Haunting:
                 RunTo(enemy.GetPosition());
-                if (Norm(direction) <= AttackRadius)
+                if (direction.magnitude <= AttackRadius)
                     SetState(DogState.Attacking);
                 break;
             case DogState.Attacking:
                 if (GetDistance(enemy.GetPosition()) > AttackRadius)
                     SetState(DogState.Haunting);
+                break;
+            case DogState.Walking:
+                if ((GetDirectionToHome() - direction).magnitude < 0)
+                {
+                    currentState = DogState.Idle;
+                    speed = 0;
+                }
                 break;
         }
 
@@ -104,7 +118,7 @@ public class Dog : MovableObject, IPlayerTriggered, ISavable
                 break;
             case PlayerState.Hidden:
                 player.OnFinishTakingDamage();
-                RunFrom(player.GetPosition());
+                direction = GetDirectionToHome();
                 SetState(DogState.Walking);
                 break;
             default:
@@ -132,7 +146,6 @@ public class Dog : MovableObject, IPlayerTriggered, ISavable
             SetState(DogState.Attacking);
         }
     }
-
 
     private void OnCollisionExit2D(Collision2D col)
     {
@@ -187,26 +200,21 @@ public class Dog : MovableObject, IPlayerTriggered, ISavable
         direction = playerPosition - rb.position;
     }
     
-    private void RunFrom(Vector2 playerPosition) 
+    private Vector2 GetDirectionToHome() 
     {
-        direction = rb.position - playerPosition;
+        return startPosition - rb.position;
     }
 
     private float GetDistance(Vector2 position)
     {
         Vector2 myPosition = transform.position;
-        return Norm(myPosition - position);
-    }
-
-    private float Norm(Vector2 position)
-    {
-        return position.x * position.x + position.y * position.y;
+        return (myPosition - position).magnitude;
     }
     
     private void AfterHideInGrass(Player player)
     {
         player.OnFinishTakingDamage();
-        RunFrom(player.GetPosition());
+        direction = GetDirectionToHome();
         SetState(DogState.Walking);
     }
 }
