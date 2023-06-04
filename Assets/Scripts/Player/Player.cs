@@ -172,7 +172,7 @@ public class Player : MonoBehaviour
     {
         energy.Add(energyPoints);
         ChangeHealth(healthPointsValue);
-        SoundEffectHelper.instance.MakeEatSound();
+        SoundEffectHelper.instance.MakeEatSound(transform.position);
     }
     
     public void EatHealthyFood(int energyPoints, int healthPointsValue)
@@ -197,7 +197,7 @@ public class Player : MonoBehaviour
     {
         ChangeHealth(-damage);
         IfNotDyingSetState(PlayerState.Wounded);
-        SoundEffectHelper.instance.MakeFallSound();
+        SoundEffectHelper.instance.MakeFallSound(transform.position);
     }
 
     public void OnFinishTakingDamage()

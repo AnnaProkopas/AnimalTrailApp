@@ -24,24 +24,24 @@ public class SoundEffectHelper: MonoBehaviour
         instance = this;
     }
 
-    public void MakeEatSound()
+    public void MakeEatSound(Vector3 position)
     {
-        MakeSound(eatSound);
+        MakeSound(eatSound, position);
     }
 
-    public void MakeFallSound()
+    public void MakeFallSound(Vector3 position)
     {
-        MakeSound(fallSound);
+        MakeSound(fallSound, position);
     }
     
     public void MakeAchieveSound()
     {
-        MakeSound(achieveSound);
+        MakeSound(achieveSound, transform.position);
     }
 
-    private void MakeSound(AudioClip audioClip)
+    private void MakeSound(AudioClip audioClip, Vector3 position)
     {
         if (enableSounds)
-            AudioSource.PlayClipAtPoint(audioClip, transform.position);
+            AudioSource.PlayClipAtPoint(audioClip, position);
     }
 }
