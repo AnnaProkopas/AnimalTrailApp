@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 5603809043300646645}
   - component: {fileID: 5603809043300646644}
   - component: {fileID: 5603809043300646647}
-  - component: {fileID: 5603809043300646646}
   - component: {fileID: 5603809043300646641}
   - component: {fileID: 5603809043300646640}
+  - component: {fileID: 8000205706640322935}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -109,32 +109,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
---- !u!61 &5603809043300646646
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5603809043300646634}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0.019662239, y: -0.3212121}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.6666667, y: 0.6666667}
-    newSize: {x: 1, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.2526303, y: 0.025512338}
-  m_EdgeRadius: 0
 --- !u!95 &5603809043300646641
 Animator:
   serializedVersion: 5
@@ -169,8 +143,35 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 5603809043300646647}
   joystick: {fileID: 0}
-  healthText: {fileID: 0}
+  healthPoints: {fileID: 0}
   currentScoreText: {fileID: 0}
   energy: {fileID: 0}
+  humanPoints: {fileID: 0}
   speed: 2
   animator: {fileID: 5603809043300646641}
+--- !u!61 &8000205706640322935
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5603809043300646634}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.026620135, y: 0.1249605}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0}
+    oldSize: {x: 0.6666667, y: 0.6666667}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.4261659, y: 0.249921}
+  m_EdgeRadius: 0
