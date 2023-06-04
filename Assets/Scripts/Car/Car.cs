@@ -17,7 +17,7 @@ public class Car : MovableObject, IPlayerTriggered, INPCAnimalTriggered, ISavabl
 
     public void OnPlayerTriggerEnter(Player player, PlayerState playerState) 
     {
-        player.OnStartTakingDamage(8);
+        player.OnStartTakingDamage((int)DamageValues.Car);
     }
     
     public void OnPlayerTriggerExit(Player player, PlayerState playerState) 

@@ -11,7 +11,7 @@ public class Dog : MovableObject, IPlayerTriggered, ISavable
     private float hauntingSpeed = 0.3f;
     private float walkingSpeed = 0.2f;
 
-    private const int AttackValue = 1;
+    private const int AttackValue = (int)DamageValues.Dog;
     private const int RestoreDuration = 3;
 
     public TriggeredObjectType Type { get; } = TriggeredObjectType.Dog;
