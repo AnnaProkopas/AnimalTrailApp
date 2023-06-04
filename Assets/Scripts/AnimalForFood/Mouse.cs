@@ -16,8 +16,9 @@ public class Mouse : MovableObject, IPlayerTriggered, ISavable
     }
 
     [SerializeField] private Animator animator;
-    [SerializeField] public int energyPoints = 4;
     [SerializeField] public int healthPoints = 1;
+    
+    private readonly int energyPoints = (int)EnergyValues.MouseBirdAndMeatRawMeatCheese;
 
     private static readonly int Speed = Animator.StringToHash("Speed");
     private static readonly int DirectionX = Animator.StringToHash("DirectionX");

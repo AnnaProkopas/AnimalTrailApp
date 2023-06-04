@@ -2,8 +2,7 @@ using UnityEngine;
 
 public class Cake : MonoBehaviour, IPlayerTriggered, ISavable
 {
-    [SerializeField]
-    public int energyPoints = 6;
+    [SerializeField] protected EnergyValues energyPoints = EnergyValues.Cake;
     [SerializeField]
     public int healthPoints = -1;
 
@@ -28,7 +27,7 @@ public class Cake : MonoBehaviour, IPlayerTriggered, ISavable
             case PlayerState.Dying:
                 break;
             default:
-                player.EatJunkFood(energyPoints, healthPoints);
+                player.EatJunkFood((int)energyPoints, healthPoints);
                 Destroy(gameObject);
                 break;
         }
