@@ -2,11 +2,10 @@ using UnityEngine;
 
 public class Cake : MonoBehaviour, IPlayerTriggered, ISavable
 {
-    [SerializeField] protected EnergyValues energyPoints = EnergyValues.Cake;
-    [SerializeField]
-    public int healthPoints = -1;
+    protected int energyPoints;
+    [SerializeField] public int healthPoints = -1;
 
-    private readonly TriggeredObjectType type = TriggeredObjectType.Cake;
+    [SerializeField] private TriggeredObjectType type = TriggeredObjectType.Cake;
 
     public TriggeredObjectType Type { get => type; }
 
@@ -19,6 +18,11 @@ public class Cake : MonoBehaviour, IPlayerTriggered, ISavable
         return gameObject;
     }
 
+    private void Start()
+    {
+        energyPoints = GameConstants.EnergyByType(type);
+    }
+
     public void OnPlayerTriggerEnter(Player player, PlayerState playerState) 
     {
         switch (playerState)
@@ -27,7 +31,7 @@ public class Cake : MonoBehaviour, IPlayerTriggered, ISavable
             case PlayerState.Dying:
                 break;
             default:
-                player.EatJunkFood((int)energyPoints, healthPoints);
+                player.EatJunkFood(energyPoints, healthPoints);
                 Destroy(gameObject);
                 break;
         }

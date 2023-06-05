@@ -2,9 +2,7 @@ using UnityEngine;
 
 public class Car : MovableObject, IPlayerTriggered, INPCAnimalTriggered, ISavable
 {
-    private readonly TriggeredObjectType type = TriggeredObjectType.Car;
-
-    public TriggeredObjectType Type { get => type; }
+    public TriggeredObjectType Type { get => TriggeredObjectType.Car; }
 
     public Vector3 GetPosition()
     {
@@ -17,7 +15,7 @@ public class Car : MovableObject, IPlayerTriggered, INPCAnimalTriggered, ISavabl
 
     public void OnPlayerTriggerEnter(Player player, PlayerState playerState) 
     {
-        player.OnStartTakingDamage((int)DamageValues.Car);
+        player.OnStartTakingDamage(GameConstants.DamageByType(Type));
     }
     
     public void OnPlayerTriggerExit(Player player, PlayerState playerState) 

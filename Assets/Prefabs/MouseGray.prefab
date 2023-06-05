@@ -83,9 +83,9 @@ GameObject:
   - component: {fileID: 3043959919102915863}
   - component: {fileID: 3043959919102915848}
   - component: {fileID: 3043959919102915849}
+  - component: {fileID: 2902338093121677522}
   - component: {fileID: 3043959919102915850}
   - component: {fileID: 2382013730637353313}
-  - component: {fileID: 8409480373380988999}
   m_Layer: 0
   m_Name: MouseGray
   m_TagString: Respawn
@@ -181,6 +181,23 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
+--- !u!114 &2902338093121677522
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3043959919102915853}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02979d9ed9631c14eb41a1141f12f69d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rb: {fileID: 3043959919102915850}
+  speed: 0.4
+  type: 9
+  animator: {fileID: 3043959919102915849}
+  healthPoints: 1
 --- !u!50 &3043959919102915850
 Rigidbody2D:
   serializedVersion: 4
@@ -218,20 +235,3 @@ CapsuleCollider2D:
   m_Offset: {x: -0.01997901, y: -0.06279207}
   m_Size: {x: 1.1856062, y: 0.90038097}
   m_Direction: 1
---- !u!114 &8409480373380988999
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3043959919102915853}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0049244e33c14bd49d92294a9508a011, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rb: {fileID: 3043959919102915850}
-  speed: 0.6
-  animator: {fileID: 3043959919102915849}
-  energyPoints: 5
-  healthPoints: 1

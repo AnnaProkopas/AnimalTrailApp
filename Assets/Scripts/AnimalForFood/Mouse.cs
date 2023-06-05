@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Mouse : MovableObject, IPlayerTriggered, ISavable
 {
-    private readonly TriggeredObjectType type = TriggeredObjectType.Mouse;
+    [SerializeField] private TriggeredObjectType type = TriggeredObjectType.Mouse;
 
     public TriggeredObjectType Type { get => type; }
 
@@ -18,7 +18,7 @@ public class Mouse : MovableObject, IPlayerTriggered, ISavable
     [SerializeField] private Animator animator;
     [SerializeField] public int healthPoints = 1;
     
-    private readonly int energyPoints = (int)EnergyValues.MouseBirdAndMeatRawMeatCheese;
+    private int energyPoints;
 
     private static readonly int Speed = Animator.StringToHash("Speed");
     private static readonly int DirectionX = Animator.StringToHash("DirectionX");
@@ -43,6 +43,11 @@ public class Mouse : MovableObject, IPlayerTriggered, ISavable
     public void OnPlayerTriggerExit(Player player, PlayerState state)
     {
         player.onAttack -= OnAttack;
+    }
+
+    private void Start()
+    {
+        energyPoints = GameConstants.EnergyByType(type);
     }
 
     protected void Update()

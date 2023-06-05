@@ -1,6 +1,3 @@
-
-using System;
-
 public class Garbage : Cake, ISavable
 {
     private readonly TriggeredObjectType type = TriggeredObjectType.Garbage;
@@ -8,6 +5,6 @@ public class Garbage : Cake, ISavable
 
     private void Start()
     {
-        energyPoints = EnergyValues.Garbage;
+        energyPoints = GameConstants.EnergyByType(type);
     }
 }

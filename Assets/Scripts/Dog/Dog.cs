@@ -11,7 +11,7 @@ public class Dog : MovableObject, IPlayerTriggered, ISavable
     private float hauntingSpeed = 0.3f;
     private float walkingSpeed = 0.2f;
 
-    private const int AttackValue = (int)DamageValues.Dog;
+    private int AttackValue;
     private const int RestoreDuration = 3;
     
     private Vector2 startPosition;
@@ -46,6 +46,7 @@ public class Dog : MovableObject, IPlayerTriggered, ISavable
     private void Start()
     {
         startPosition = transform.position;
+        AttackValue = GameConstants.DamageByType(Type);
     }
 
     protected void Update()
