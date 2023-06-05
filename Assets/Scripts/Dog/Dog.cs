@@ -8,8 +8,8 @@ public class Dog : MovableObject, IPlayerTriggered, ISavable
     private const int AttackAnimate = 1;
     
     private const float AttackRadius = 0.6f;
-    private float hauntingSpeed = 0.3f;
-    private float walkingSpeed = 0.2f;
+    private float hauntingSpeed;
+    private float walkingSpeed;
 
     private int AttackValue;
     private const int RestoreDuration = 3;
@@ -47,6 +47,8 @@ public class Dog : MovableObject, IPlayerTriggered, ISavable
     {
         startPosition = transform.position;
         AttackValue = GameConstants.DamageByType(Type);
+        hauntingSpeed = GameConstants.SpeedByType(Type, (int)DogState.Haunting);
+        walkingSpeed = GameConstants.SpeedByType(Type, (int)DogState.Walking);
     }
 
     protected void Update()

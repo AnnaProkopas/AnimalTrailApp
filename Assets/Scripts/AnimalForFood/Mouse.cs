@@ -18,7 +18,7 @@ public class Mouse : MovableObject, IPlayerTriggered, ISavable
     [SerializeField] private Animator animator;
     [SerializeField] public int healthPoints = 1;
     
-    private int energyPoints;
+    protected int energyPoints;
 
     private static readonly int Speed = Animator.StringToHash("Speed");
     private static readonly int DirectionX = Animator.StringToHash("DirectionX");
@@ -52,16 +52,15 @@ public class Mouse : MovableObject, IPlayerTriggered, ISavable
 
     protected void Update()
     {
-        float absX = Mathf.Abs(direction.x);
-        float absY = Mathf.Abs(direction.y);
-
-        animator.SetFloat(Speed, absX + absY);
+        animator.SetFloat(Speed, speed);
         animator.SetFloat(LastDirX, lastDirectionX);
 
-        if (absX > absY) 
+        if (Mathf.Abs(direction.x) > Mathf.Abs(direction.y)) 
         {
             animator.SetFloat(DirectionX, Mathf.Sign(direction.x));
+            animator.SetFloat(DirectionY, 0f);
         } else {
+            animator.SetFloat(DirectionX, 0f);
             animator.SetFloat(DirectionY, Mathf.Sign(direction.y));
         }
     }
@@ -69,6 +68,7 @@ public class Mouse : MovableObject, IPlayerTriggered, ISavable
     private void RunAwayFrom(Vector2 playerPosition) 
     {
         direction = rb.position - playerPosition;
+        speed = GameConstants.SpeedByType(Type);
     }
 
     private void OnAttack(Player player)

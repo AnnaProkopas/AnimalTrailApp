@@ -3,7 +3,7 @@ using UnityEngine;
 public class MovableObject : MonoBehaviour
 {
     [SerializeField] protected Rigidbody2D rb;
-    [SerializeField] protected float speed = 1;
+    protected float speed;
 
     protected Vector2 direction = new Vector2(0, 0);
     protected float lastDirectionX = 1.0f;

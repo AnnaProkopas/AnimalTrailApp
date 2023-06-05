@@ -1,4 +1,3 @@
-using System;
 using JetBrains.Annotations;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -8,7 +7,6 @@ public class CarSpawner : MonoBehaviour
     [SerializeField] private GameObject[] cars;
     [SerializeField] private Transform spawnPoint;
     [SerializeField] private Transform collapsePoint;
-    [SerializeField] private float speed = 4.0f;
     
     [CanBeNull] private GameObject currentCar;
 

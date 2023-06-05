@@ -35,4 +35,32 @@ public struct GameConstants
 
         return 0;
     }
+
+    public static float SpeedByType(TriggeredObjectType type, int state = -1)
+    {
+        switch (type)
+        {
+            case TriggeredObjectType.Car:
+                return 7f;
+            case TriggeredObjectType.Dog:
+                switch (state)
+                {
+                    case (int)DogState.Haunting:
+                        return 0.3f;
+                    case (int)DogState.Walking:
+                        return 0.2f;
+                }
+
+                return 0f;
+            case TriggeredObjectType.Mouse:
+            case TriggeredObjectType.GrayMouse:
+                return 0.5f;
+            case TriggeredObjectType.Bird:
+                return 0.5f;
+            
+            case TriggeredObjectType.Fox:
+                return 2f;
+        }
+        return 0.0f;
+    }
 }

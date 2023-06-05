@@ -232,6 +232,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 3043959919102915850}
   speed: 0.5
+  type: 10
   animator: {fileID: 3043959919102915849}
-  energyPoints: 4
   healthPoints: 1

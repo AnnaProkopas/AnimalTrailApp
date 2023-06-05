@@ -1,5 +1,7 @@
 public enum TriggeredObjectType: int
 { 
+    Fox = -1,
+    
     Default = 0,
     Mouse = 1,
     GrayMouse = 9,

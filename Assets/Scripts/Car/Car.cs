@@ -23,14 +23,10 @@ public class Car : MovableObject, IPlayerTriggered, INPCAnimalTriggered, ISavabl
         player.OnFinishTakingDamage();
     }
 
-    void Awake()
-    {
-        direction = new Vector2(0, 0);
-    }
-
     public void SetDirection(Vector3 toward)
     {
         direction = ((Vector2)(toward - transform.position)).normalized;
+        speed = GameConstants.SpeedByType(TriggeredObjectType.Car);
     }
     
     public void OnNpcAnimalTriggerEnter(INPCAnimal npcAnimal)
