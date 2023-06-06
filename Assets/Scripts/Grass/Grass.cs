@@ -12,6 +12,15 @@ public class Grass : MonoBehaviour, IPlayerTriggered
     public void OnPlayerTriggerExit(Player player, PlayerState state)
     {
         player.onHideInGrass -= OnHideInGrass;
+        switch (state)
+        {
+            case PlayerState.Attack:
+                player.EnableAttackMode();
+                break;
+            default:
+                player.DisableAttackMode();
+                break;
+        }
     }
     
     private void OnHideInGrass(Player player)
