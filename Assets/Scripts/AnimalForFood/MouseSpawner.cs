@@ -20,6 +20,7 @@ public class MouseSpawner : MonoBehaviour
     private Vector2 minPoint;
     private Vector2 maxPoint;
 
+    // TODO переписать на анимацию исчезания (отлета у птицы) при сильном удалении от стартовой позиции
     private void Start() 
     {
         timeBetweenSpawn = spawnStartTime;
@@ -62,6 +63,7 @@ public class MouseSpawner : MonoBehaviour
 
             if (currentFood.Count < maxAmountFoodOnScene) 
             {
+                // TODO: сделать что то с двумя мышками в одной клетке
                 int foodInd = Random.Range(0, food.Length);
                 int positionInd = Random.Range(0, spawnPoints.Length);
                 currentFood.Add(Instantiate(food[foodInd], spawnPoints[positionInd].transform.position, Quaternion.identity));
