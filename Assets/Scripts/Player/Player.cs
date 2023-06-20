@@ -1,11 +1,12 @@
 using System;
 using EventBusModule;
+using EventBusModule.Controls;
 using EventBusModule.Energy;
 using UnityEngine;
 using UnityEngine.UI;
 using Random = System.Random;
 
-public class Player : MonoBehaviour, IEnergyPlayerHandler
+public class Player : MonoBehaviour, IEnergyPlayerHandler, IJoystickHandler
 {
     public delegate void AttackDelegate(Player player);
     public delegate void SetActiveDelegate(JoyButtonState active);
@@ -16,15 +17,14 @@ public class Player : MonoBehaviour, IEnergyPlayerHandler
     public AttackDelegate onMeetHuman;
     public SetActiveDelegate setActiveCustomJoyButton;
     
-    [SerializeField] private Rigidbody2D rb;
-    [SerializeField] private Joystick joystick;
+    private Rigidbody2D rb;
     [SerializeField] private HealthPoints healthPoints;
     [SerializeField] private Text currentScoreText;
     private int energy;
     [SerializeField] private HumanPoints humanPoints;
     
     [SerializeField] private float speed;
-    [SerializeField] private Animator animator;
+    private Animator animator;
 
     private PlayerState currentState;
     private Vector2 movement;
@@ -54,6 +54,9 @@ public class Player : MonoBehaviour, IEnergyPlayerHandler
     {
         recordValueForFoodCounter = PlayerRatingService.GetRecordFoodCounter();
         rnd = new Random();
+        rb = gameObject.GetComponent<Rigidbody2D>();
+        animator = gameObject.GetComponent<Animator>();
+        
         healthPoints.HiddenChange(health);
     }
     
@@ -79,13 +82,10 @@ public class Player : MonoBehaviour, IEnergyPlayerHandler
             return;
         }
 
-        movement.x = Mathf.Sign(joystick.Horizontal) * (Mathf.Abs(joystick.Horizontal) > .2f ? 1 : 0) * speed;
-        movement.y = Mathf.Sign(joystick.Vertical) * (Mathf.Abs(joystick.Vertical) > .2f ? 1 : 0) * speed;
-        float absMovement = Mathf.Abs(movement.x) + Mathf.Abs(movement.y);
         int signMovementX = (int)Mathf.Sign(movement.x);
 
         animator.SetInteger(AnimatorAttributeState, (int)currentState);
-        animator.SetFloat(AnimatorAttributeSpeed, absMovement);
+        animator.SetFloat(AnimatorAttributeSpeed, movement.SqrMagnitude());
         animator.SetFloat(AnimatorAttributeDirectionX, signMovementX);
         animator.SetFloat(AnimatorAttributeLastDirectionX, lastDirectionX);
         if (movement.x != 0)
@@ -96,10 +96,17 @@ public class Player : MonoBehaviour, IEnergyPlayerHandler
 
     private void FixedUpdate() 
     {
-        if (currentState != PlayerState.Dead) 
+        if (currentState != PlayerState.Dead)
         {
-            rb.MovePosition(rb.position + movement * Time.fixedDeltaTime);
+            var movementPerTime = movement.normalized * speed;
+            rb.MovePosition(rb.position + movementPerTime * Time.fixedDeltaTime);
         }
+    }
+
+    public void HandleDragJoystick(float horizontal, float vertical)
+    {
+        movement.x = Mathf.Sign(horizontal) * (Mathf.Abs(horizontal) > .2f ? 1 : 0);
+        movement.y = Mathf.Sign(vertical) * (Mathf.Abs(vertical) > .2f ? 1 : 0);
     }
 
     private void OnTriggerEnter2D (Collider2D other) 

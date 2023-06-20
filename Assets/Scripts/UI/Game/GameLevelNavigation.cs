@@ -1,5 +1,4 @@
 using EventBusModule;
-using EventBusModule.Energy;
 using EventBusModule.GameProcess;
 using UnityEngine;
 using UnityEngine.SceneManagement;
