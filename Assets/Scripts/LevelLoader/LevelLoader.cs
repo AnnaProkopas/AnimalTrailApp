@@ -1,8 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.Serialization.Formatters.Binary;
+using EventBusModule;
+using EventBusModule.Energy;
 using UnityEngine;
 
 using UnityEngine.SceneManagement;
@@ -90,6 +91,8 @@ public class LevelLoader: MonoBehaviour
             foreach (var gmObj in typeToObject.Values)
                 Destroy(gmObj);
             
+            EventBus.RaiseEvent<IEnergyTimerHandler>(h => h.Restart(level.playerEnergy));
+
             GetPlayer().UpdateOnLevelLoad(level.playerPosition.Get(), level.playerHealth, level.playerEnergy, level.playerScore, level.playerJunkFoodScore, level.playerHumanPoints, (PlayerState)level.playerState);
         }
     }

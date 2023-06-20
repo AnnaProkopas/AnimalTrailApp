@@ -1,9 +1,11 @@
 using System;
+using EventBusModule;
+using EventBusModule.Energy;
 using UnityEngine;
 using UnityEngine.UI;
 using Random = System.Random;
 
-public class Player : MonoBehaviour
+public class Player : MonoBehaviour, IEnergyPlayerHandler
 {
     public delegate void AttackDelegate(Player player);
     public delegate void SetActiveDelegate(JoyButtonState active);
@@ -18,7 +20,7 @@ public class Player : MonoBehaviour
     [SerializeField] private Joystick joystick;
     [SerializeField] private HealthPoints healthPoints;
     [SerializeField] private Text currentScoreText;
-    [SerializeField] private EnergyManager energy;
+    private int energy;
     [SerializeField] private HumanPoints humanPoints;
     
     [SerializeField] private float speed;
@@ -40,7 +42,7 @@ public class Player : MonoBehaviour
     private static readonly int AnimatorAttributeLastDirectionX = Animator.StringToHash("LastDirectionX");
 
     public int Health { get => health; }
-    public int Energy { get => energy.GetEnergyValue(); }
+    public int Energy { get => energy; }
     public int Score { get => currentScore; }
     public int JunkFoodScore { get => currentJunkFoodScore; }
     public float HumanPoints { get => humanPoints.Value; }
@@ -53,6 +55,16 @@ public class Player : MonoBehaviour
         recordValueForFoodCounter = PlayerRatingService.GetRecordFoodCounter();
         rnd = new Random();
         healthPoints.HiddenChange(health);
+    }
+    
+    private void OnEnable()
+    {
+        EventBus.Subscribe(this);
+    }
+
+    private void OnDisable()
+    {
+        EventBus.Unsubscribe(this);
     }
 
     private void Update()
@@ -119,7 +131,7 @@ public class Player : MonoBehaviour
 
     private bool IsReadyForDeath()
     {
-        return health == 0 || energy.GetEnergyValue() == 0;
+        return health == 0 || energy == 0;
     }
 
     private void StartDyingProcess()
@@ -168,29 +180,34 @@ public class Player : MonoBehaviour
         GameLevelNavigation.GameOver();
     }
 
-    private void Eat(int energyPoints, int healthPointsValue)
+    private void Eat(int energyFoodValue, int healthPointsValue)
     {
-        energy.Add(energyPoints);
+        EventBus.RaiseEvent<IEnergyTimerHandler>(h => h.HandleEnergyByPlayer(energyFoodValue));
         ChangeHealth(healthPointsValue);
         SoundEffectHelper.instance.MakeEatSound(transform.position);
     }
     
-    public void EatHealthyFood(int energyPoints, int healthPointsValue)
+    public void EatHealthyFood(int energyFoodValue, int healthPointsValue)
     {
-        Eat(energyPoints, healthPointsValue); 
+        Eat(energyFoodValue, healthPointsValue); 
         IncreaseFoodCounter();
     }
     
-    public void EatJunkFood(int energyPoints, int healthPointsValue)
+    public void EatJunkFood(int energyFoodValue, int healthPointsValue)
     {
-        Eat(energyPoints, healthPointsValue);
+        Eat(energyFoodValue, healthPointsValue);
         ChangeHumanPoint(0.1f);
         currentJunkFoodScore++;
     }
 
-    public void OnEnergyIsOver()
+    public void HandleTotalEnergy(int currentValue, int variation, bool isAnimated)
     {
-        StartDyingProcess();
+        energy = currentValue;
+        
+        if (currentValue <= 0)
+        {
+            StartDyingProcess();
+        }
     }
 
     public void OnStartTakingDamage(int damage)
@@ -252,7 +269,7 @@ public class Player : MonoBehaviour
         humanPoints.Value = _humanPoints;
         health = loadedHealth;
         healthPoints.HiddenChange(loadedHealth);
-        energy.Restart(loadedEnergy);
+        // energy.Restart(loadedEnergy);
         currentScore = score;
         currentJunkFoodScore = junkFoodScore;
         currentState = state;
