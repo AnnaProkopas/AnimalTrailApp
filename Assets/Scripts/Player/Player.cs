@@ -2,6 +2,7 @@ using System;
 using EventBusModule;
 using EventBusModule.Controls;
 using EventBusModule.Energy;
+using EventBusModule.PlayerPoints;
 using UnityEngine;
 using UnityEngine.UI;
 using Random = System.Random;
@@ -18,22 +19,24 @@ public class Player : MonoBehaviour, IEnergyPlayerHandler, IJoystickHandler
     public SetActiveDelegate setActiveCustomJoyButton;
     
     private Rigidbody2D rb;
-    [SerializeField] private HealthPoints healthPoints;
+    private Animator animator;
+    
     [SerializeField] private Text currentScoreText;
-    private int energy;
     [SerializeField] private HumanPoints humanPoints;
     
     [SerializeField] private float speed;
-    private Animator animator;
 
     private PlayerState currentState;
+    
     private Vector2 movement;
     private int lastDirectionX = 0;
 
+    private int energy;
     private int currentScore = 0;
     private int currentJunkFoodScore = 0;
     private int recordValueForFoodCounter;
     private int health = 6;
+    
     private Random rnd;
     
     private static readonly int AnimatorAttributeState = Animator.StringToHash("State");
@@ -57,7 +60,7 @@ public class Player : MonoBehaviour, IEnergyPlayerHandler, IJoystickHandler
         rb = gameObject.GetComponent<Rigidbody2D>();
         animator = gameObject.GetComponent<Animator>();
         
-        healthPoints.HiddenChange(health);
+        EventBus.RaiseEvent<IHealthHandler>(h => h.HandleHealthValue(health, null, false));
     }
     
     private void OnEnable()
@@ -162,7 +165,8 @@ public class Player : MonoBehaviour, IEnergyPlayerHandler, IJoystickHandler
     private void ChangeHealth(int value) 
     {
         int newHealth = Math.Min(Math.Max(health + value, 0), MaxHealth);
-        healthPoints.AnimatedChange(newHealth, newHealth - health);
+
+        EventBus.RaiseEvent<IHealthHandler>(h => h.HandleHealthValue(newHealth, newHealth - health, false));
         health = newHealth;
         if (IsReadyForDeath())
         {
@@ -172,7 +176,7 @@ public class Player : MonoBehaviour, IEnergyPlayerHandler, IJoystickHandler
 
     private void ChangeHumanPoint(float value)
     {
-        humanPoints.Plus(value);
+        EventBus.RaiseEvent<IHumanPointsHandler>(h => h.HandleHumanPointsValue(null, value, false));
     }
 
     public Vector2 GetPosition() 
@@ -273,10 +277,9 @@ public class Player : MonoBehaviour, IEnergyPlayerHandler, IJoystickHandler
     public void UpdateOnLevelLoad(Vector3 position, int loadedHealth, int loadedEnergy, int score, int junkFoodScore, float _humanPoints, PlayerState state)
     {
         transform.position = position;
-        humanPoints.Value = _humanPoints;
         health = loadedHealth;
-        healthPoints.HiddenChange(loadedHealth);
-        // energy.Restart(loadedEnergy);
+        energy = 
+
         currentScore = score;
         currentJunkFoodScore = junkFoodScore;
         currentState = state;

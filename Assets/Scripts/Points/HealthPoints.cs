@@ -1,40 +1,35 @@
-using System.Collections.Generic;
+using System;
+using EventBusModule;
+using EventBusModule.PlayerPoints;
 using UnityEngine;
 
-public class HealthPoints : MonoBehaviour
+public class HealthPoints : MonoBehaviour, IHealthHandler
 {
-    // [SerializeField] private RectTransform rectTransform;
     [SerializeField] private HealthPoint[] points;
-    // [SerializeField] private PointVariation incObject;
-    // [SerializeField] private PointVariation decObject;
-    
-    [SerializeField] private int alertValue;
 
     private int value;
 
-    public void AnimatedChange(int newValue, int variation)
+    private void OnEnable()
     {
-        // if (variation > 0)
-        // {
-        //     var copyObject = Instantiate(incObject, rectTransform.position, Quaternion.identity);
-        //     copyObject.transform.SetParent(rectTransform);
-        //     copyObject.UpdateText(variation.ToString());
-        // }
-        // else if (variation < 0)
-        // {
-        //     var copyObject = Instantiate(decObject, rectTransform.position, Quaternion.identity);
-        //     copyObject.transform.SetParent(rectTransform);
-        //     copyObject.UpdateText((-1 * variation).ToString());
-        // }
-
-        HiddenChange(newValue);
+        EventBus.Subscribe(this);
     }
 
-    public void HiddenChange(int newValue)
+    private void OnDisable()
     {
-        value = newValue;
+        EventBus.Unsubscribe(this);
+    }
+
+    public void HandleHealthValue(int currentValue, int? variation, bool isAnimated)
+    {
+        if (isAnimated)
+        {
+            // ...
+        }
+        
+        value = currentValue;
         UpdateView();
     }
+
     private void UpdateView()
     {
         for (int i = 0; i < points.Length; i++)

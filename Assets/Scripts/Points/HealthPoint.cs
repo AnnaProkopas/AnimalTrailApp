@@ -2,10 +2,15 @@
 
 public class HealthPoint : MonoBehaviour
 {
-    [SerializeField] private Animator animator;
+    private Animator animator;
     private static readonly int State = Animator.StringToHash("State");
     private static readonly int Disable = Animator.StringToHash("Disable");
 
+    private void Start()
+    {
+        animator = gameObject.GetComponent<Animator>();
+    }
+    
     public void ChangeValue(PointState state, PointDisabledState disabledState)
     {
         animator.SetFloat(State, (int)state);
