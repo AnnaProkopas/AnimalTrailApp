@@ -1,3 +1,6 @@
+using EventBusModule;
+using EventBusModule.Energy;
+using EventBusModule.GameProcess;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -30,7 +33,7 @@ public class GameLevelNavigation : MonoBehaviour
         pauseMenu.SetActive(true);
         gameButtons.SetActive(false);
         Time.timeScale = 0f;
-        energyManager.Pause();
+        EventBus.RaiseEvent<IPauseHandler>(h => h.Pause());
     }
 
     public void Resume()
@@ -38,7 +41,7 @@ public class GameLevelNavigation : MonoBehaviour
         pauseMenu.SetActive(false);
         gameButtons.SetActive(true);
         Time.timeScale = 1f;
-        energyManager.Resume();
+        EventBus.RaiseEvent<IPauseHandler>(h => h.Resume());
     }
 
     public void Home()

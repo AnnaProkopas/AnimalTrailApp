@@ -2,10 +2,11 @@ using System;
 using System.Collections;
 using EventBusModule;
 using EventBusModule.Energy;
+using EventBusModule.GameProcess;
 using UnityEngine;
 using Utils;
 
-public class EnergyManager : MonoBehaviour, IEnergyTimerHandler
+public class EnergyManager : MonoBehaviour, IEnergyTimerHandler, IPauseHandler
 {
     [SerializeField]
     private int maxEnergy;
