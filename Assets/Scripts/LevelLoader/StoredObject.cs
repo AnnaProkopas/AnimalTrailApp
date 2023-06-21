@@ -1,15 +1,18 @@
 ﻿using System;
-using System.Collections.Generic;
+using GameObjects;
 using UnityEngine;
 
-[Serializable]
-public class StoredObject
+namespace LevelLoader
 {
-    public TriggeredObjectType type;
-    public StoredVector3 position;
-    public StoredObject(TriggeredObjectType type, Vector3 position)
+    [Serializable]
+    public class StoredObject
     {
-        this.type = type;
-        this.position = new StoredVector3(position);
+        public TriggeredObjectType type;
+        public StoredVector3 position;
+        public StoredObject(TriggeredObjectType type, Vector3 position)
+        {
+            this.type = type;
+            this.position = new StoredVector3(position);
+        }
     }
 }

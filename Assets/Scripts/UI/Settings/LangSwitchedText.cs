@@ -1,18 +1,20 @@
-﻿
-
+﻿using UI.Localization;
 using UnityEngine;
 
-public class LangSwitchedText : LangTextMeshPro
+namespace UI.Settings
 {
-    [SerializeField] private string enableKey;
-    [SerializeField] private string disableKey;
-
-    public void ChangeText(bool isEnable)
+    public class LangSwitchedText : LangTextMeshPro
     {
-        if (isEnable)
-            key = enableKey;
-        else
-            key = disableKey;
-        Localize();
+        [SerializeField] private string enableKey;
+        [SerializeField] private string disableKey;
+
+        public void ChangeText(bool isEnable)
+        {
+            if (isEnable)
+                key = enableKey;
+            else
+                key = disableKey;
+            Localize();
+        }
     }
 }

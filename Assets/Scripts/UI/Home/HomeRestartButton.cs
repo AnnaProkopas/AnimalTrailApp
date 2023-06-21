@@ -1,11 +1,14 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class HomeRestartButton : MonoBehaviour
+namespace UI.Home
 {
-    public void LoadNewLevel()
+    public class HomeRestartButton : MonoBehaviour
     {
-        LevelLoader.Delete();
-        SceneManager.LoadScene(1);
+        public void LoadNewLevel()
+        {
+            LevelLoader.LevelLoader.Delete();
+            SceneManager.LoadScene(1);
+        }
     }
 }

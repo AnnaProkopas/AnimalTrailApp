@@ -1,27 +1,30 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-public class LangText : MonoBehaviour
+namespace UI.Localization
 {
-    [SerializeField]
-    private Text text;
+    public class LangText : MonoBehaviour
+    {
+        [SerializeField]
+        private Text text;
     
-    [SerializeField]
-    private string key;
+        [SerializeField]
+        private string key;
 
-    private void Start()
-    {
-        Localize();
-        LangManager.OnLanguageChange += OnLanguageChange;
-    }
+        private void Start()
+        {
+            Localize();
+            LangManager.OnLanguageChange += OnLanguageChange;
+        }
 
-    private void Localize()
-    {
-        text.text = LangManager.GetTranslate(key);
-    }
+        private void Localize()
+        {
+            text.text = LangManager.GetTranslate(key);
+        }
 
-    private void OnLanguageChange()
-    {
-        Localize();
+        private void OnLanguageChange()
+        {
+            Localize();
+        }
     }
 }

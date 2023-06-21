@@ -1,37 +1,41 @@
+using PlayerModule;
 using UnityEngine;
 
-public class CarSnackSpawner : MonoBehaviour, IPlayerTriggered
+namespace GameObjects.Car
 {
-    // TriggeredObjectType.CarFoodSpawner
-    [SerializeField] private GameObject[] foods;
-
-    public Vector3 GetPosition()
+    public class CarSnackSpawner : MonoBehaviour, IPlayerTriggered
     {
-        return transform.position;
-    }
+        // TriggeredObjectType.CarFoodSpawner
+        [SerializeField] private GameObject[] foods;
 
-    public GameObject GetGameObject()
-    {
-        return gameObject;
-    }
-
-    public void OnPlayerTriggerEnter(Player player, PlayerState playerState)
-    {
-        switch (playerState)
+        public Vector3 GetPosition()
         {
-            case PlayerState.Dead:
-            case PlayerState.Dying:
-            case PlayerState.Attack:
-                break;
-            default:
-                Spawn(player.GetPosition() + (new Vector2(2, 0)));
-                break;
+            return transform.position;
         }
-    }
 
-    private void Spawn(Vector2 position)
-    {
-        int foodInd = Random.Range(0, foods.Length);
-        Instantiate(foods[foodInd], position, Quaternion.identity);
+        public GameObject GetGameObject()
+        {
+            return gameObject;
+        }
+
+        public void OnPlayerTriggerEnter(Player player, PlayerState playerState)
+        {
+            switch (playerState)
+            {
+                case PlayerState.Dead:
+                case PlayerState.Dying:
+                case PlayerState.Attack:
+                    break;
+                default:
+                    Spawn(player.GetPosition() + (new Vector2(2, 0)));
+                    break;
+            }
+        }
+
+        private void Spawn(Vector2 position)
+        {
+            int foodInd = Random.Range(0, foods.Length);
+            Instantiate(foods[foodInd], position, Quaternion.identity);
+        }
     }
 }

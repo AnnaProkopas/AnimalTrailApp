@@ -1,6 +1,9 @@
-﻿public enum FemaleState
+﻿namespace GameObjects.Humans
 {
-    Idle,
-    Cry,
-    Happy,
+    public enum FemaleState
+    {
+        Idle,
+        Cry,
+        Happy,
+    }
 }

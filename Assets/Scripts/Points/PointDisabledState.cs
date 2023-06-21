@@ -1,6 +1,9 @@
-﻿public enum PointDisabledState
+﻿namespace Points
 {
-    None = -1,
-    Half,
-    Full
+    public enum PointDisabledState
+    {
+        None = -1,
+        Half,
+        Full
+    }
 }

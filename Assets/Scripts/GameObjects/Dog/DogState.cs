@@ -1,7 +1,10 @@
-﻿public enum DogState
+﻿namespace GameObjects.Dog
 {
-    Idle = 0,
-    Walking,
-    Attacking,
-    Haunting
+    public enum DogState
+    {
+        Idle = 0,
+        Walking,
+        Attacking,
+        Haunting
+    }
 }

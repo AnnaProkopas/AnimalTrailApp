@@ -1,18 +1,21 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-public class PointVariation : MonoBehaviour
+namespace Points
 {
-    [SerializeField] private string prefix;
-    [SerializeField] private Text text;
-    [SerializeField] private Animator animator;
-
-    public void UpdateText(string val)
+    public class PointVariation : MonoBehaviour
     {
-        text.text = prefix + val;
-    }
+        [SerializeField] private string prefix;
+        [SerializeField] private Text text;
+        [SerializeField] private Animator animator;
+
+        public void UpdateText(string val)
+        {
+            text.text = prefix + val;
+        }
     
-    void Start () {
-        Destroy (gameObject, animator.GetCurrentAnimatorStateInfo(0).length + 5); 
+        void Start () {
+            Destroy (gameObject, animator.GetCurrentAnimatorStateInfo(0).length + 5); 
+        }
     }
 }

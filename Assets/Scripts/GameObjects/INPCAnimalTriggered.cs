@@ -1,4 +1,9 @@
-public interface INPCAnimalTriggered
+using GameObjects.AnimalForFood;
+
+namespace GameObjects
 {
-    public void OnNpcAnimalTriggerEnter(INPCAnimal npcAnimal);
+    public interface INPCAnimalTriggered
+    {
+        public void OnNpcAnimalTriggerEnter(INPCAnimal npcAnimal);
+    }
 }

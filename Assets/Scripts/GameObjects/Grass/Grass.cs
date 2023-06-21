@@ -1,29 +1,33 @@
+using PlayerModule;
 using UnityEngine;
 
-public class Grass : MonoBehaviour, IPlayerTriggered
+namespace GameObjects.Grass
 {
-    // TriggeredObjectType.Grass
+    public class Grass : MonoBehaviour, IPlayerTriggered
+    {
+        // TriggeredObjectType.Grass
 
-    public void OnPlayerTriggerEnter(Player player, PlayerState state)
-    {
-        player.onHideInGrass += OnHideInGrass;
-    }
-    
-    public void OnPlayerTriggerExit(Player player, PlayerState state)
-    {
-        player.onHideInGrass -= OnHideInGrass;
-        switch (state)
+        public void OnPlayerTriggerEnter(Player player, PlayerState state)
         {
-            case PlayerState.Attack:
-                player.EnableAttackMode();
-                break;
-            default:
-                player.DisableAttackMode();
-                break;
+            player.onHideInGrass += OnHideInGrass;
         }
-    }
     
-    private void OnHideInGrass(Player player)
-    {
+        public void OnPlayerTriggerExit(Player player, PlayerState state)
+        {
+            player.onHideInGrass -= OnHideInGrass;
+            switch (state)
+            {
+                case PlayerState.Attack:
+                    player.EnableAttackMode();
+                    break;
+                default:
+                    player.DisableAttackMode();
+                    break;
+            }
+        }
+    
+        private void OnHideInGrass(Player player)
+        {
+        }
     }
 }

@@ -1,25 +1,28 @@
 ﻿using TMPro;
 using UnityEngine;
 
-public class LangTextMeshPro : MonoBehaviour
+namespace UI.Localization
 {
-    [SerializeField] private TextMeshProUGUI text;
+    public class LangTextMeshPro : MonoBehaviour
+    {
+        [SerializeField] private TextMeshProUGUI text;
     
-    [SerializeField] protected string key;
+        [SerializeField] protected string key;
 
-    private void Start()
-    {
-        Localize();
-        LangManager.OnLanguageChange += OnLanguageChange;
-    }
+        private void Start()
+        {
+            Localize();
+            LangManager.OnLanguageChange += OnLanguageChange;
+        }
 
-    protected void Localize()
-    {
-        text.text = LangManager.GetTranslate(key);
-    }
+        protected void Localize()
+        {
+            text.text = LangManager.GetTranslate(key);
+        }
 
-    private void OnLanguageChange()
-    {
-        Localize();
+        private void OnLanguageChange()
+        {
+            Localize();
+        }
     }
 }

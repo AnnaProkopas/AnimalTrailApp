@@ -1,10 +1,13 @@
-﻿
+﻿using UI.Localization;
 using UnityEngine;
 
-public class LangController : MonoBehaviour
+namespace UI.Settings
 {
-    public void SetLanguage(int language)
+    public class LangController : MonoBehaviour
     {
-        LangManager.SelectedLanguage = (Languages)language;
+        public void SetLanguage(int language)
+        {
+            LangManager.SelectedLanguage = (Languages)language;
+        }
     }
 }

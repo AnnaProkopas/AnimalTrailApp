@@ -1,7 +1,7 @@
 
 namespace EventBusModule.Energy
 {
-    public interface IEnergyTimerHandler : IGlobalSubscriber
+    public interface IEnergyTimerSubscriber : IGlobalSubscriber
     {
         void HandleEnergyByPlayer(int variation);
 

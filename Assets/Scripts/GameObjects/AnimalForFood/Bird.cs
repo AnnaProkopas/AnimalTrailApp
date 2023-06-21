@@ -1,10 +1,15 @@
-public class Bird : Mouse, ISavable
+using GameHelpers;
+
+namespace GameObjects.AnimalForFood
 {
-    private readonly TriggeredObjectType type = TriggeredObjectType.Bird;
-    public new TriggeredObjectType Type { get => type; }
-    
-    private void Start()
+    public class Bird : Mouse, ISavable
     {
-        energyPoints = GameConstants.EnergyByType(Type);
+        private readonly TriggeredObjectType type = TriggeredObjectType.Bird;
+        public new TriggeredObjectType Type { get => type; }
+    
+        private void Start()
+        {
+            energyPoints = GameConstants.EnergyByType(Type);
+        }
     }
 }

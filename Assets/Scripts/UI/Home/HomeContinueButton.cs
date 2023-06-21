@@ -1,18 +1,21 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-public class HomeContinueButton : MonoBehaviour
+namespace UI.Home
 {
-    private void Start()
+    public class HomeContinueButton : MonoBehaviour
     {
-        if (!CanLoadOldLevel())
+        private void Start()
         {
-            GetComponent<Button>().interactable = false;
+            if (!CanLoadOldLevel())
+            {
+                GetComponent<Button>().interactable = false;
+            }
         }
-    }
 
-    public bool CanLoadOldLevel()
-    {
-        return LevelLoader.HasSavedLevel();
+        public bool CanLoadOldLevel()
+        {
+            return LevelLoader.LevelLoader.HasSavedLevel();
+        }
     }
 }

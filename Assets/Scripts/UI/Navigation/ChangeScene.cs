@@ -1,16 +1,20 @@
+using UI.Game;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class ChangeScene : MonoBehaviour
+namespace UI.Navigation
 {
-    public void LoadScene(int sceneID) 
+    public class ChangeScene : MonoBehaviour
     {
-        StaticStore.AddScene(SceneManager.GetActiveScene().buildIndex);
-        SceneManager.LoadScene(sceneID);
-    }
+        public void LoadScene(int sceneID) 
+        {
+            StaticStore.AddScene(SceneManager.GetActiveScene().buildIndex);
+            SceneManager.LoadScene(sceneID);
+        }
 
-    public void LoadPreviousScene()
-    {
-        SceneManager.LoadScene(StaticStore.PopSceneId());
+        public void LoadPreviousScene()
+        {
+            SceneManager.LoadScene(StaticStore.PopSceneId());
+        }
     }
 }

@@ -1,6 +1,9 @@
-﻿public enum PointState
+﻿namespace Points
 {
-    Empty = -1,
-    Half,
-    Full
+    public enum PointState
+    {
+        Empty = -1,
+        Half,
+        Full
+    }
 }

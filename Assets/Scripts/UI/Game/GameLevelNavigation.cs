@@ -1,58 +1,62 @@
 using EventBusModule;
 using EventBusModule.GameProcess;
+using PlayerModule;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class GameLevelNavigation : MonoBehaviour
+namespace UI.Game
 {
-    [SerializeField] private GameObject pauseMenu;
-    [SerializeField] private EnergyManager energyManager;
-    [SerializeField] private GameObject gameButtons;
-
-    void OnApplicationPause(bool pauseStatus)
+    public class GameLevelNavigation : MonoBehaviour
     {
-        if (pauseStatus)
+        [SerializeField] private GameObject pauseMenu;
+        [SerializeField] private EnergyManager energyManager;
+        [SerializeField] private GameObject gameButtons;
+
+        void OnApplicationPause(bool pauseStatus)
         {
-            Pause();
-            LevelLoader.Save();
+            if (pauseStatus)
+            {
+                Pause();
+                LevelLoader.LevelLoader.Save();
+            }
         }
-    }
     
-    void OnApplicationFocus(bool hasFocus)
-    {
-        if (!hasFocus)
+        void OnApplicationFocus(bool hasFocus)
         {
-            Pause();
-            LevelLoader.Save();
+            if (!hasFocus)
+            {
+                Pause();
+                LevelLoader.LevelLoader.Save();
+            }
         }
-    }
     
-    public void Pause()
-    {
-        pauseMenu.SetActive(true);
-        gameButtons.SetActive(false);
-        Time.timeScale = 0f;
-        EventBus.RaiseEvent<IPauseHandler>(h => h.Pause());
-    }
+        public void Pause()
+        {
+            pauseMenu.SetActive(true);
+            gameButtons.SetActive(false);
+            Time.timeScale = 0f;
+            EventBus.RaiseEvent<IPauseHandler>(h => h.Pause());
+        }
 
-    public void Resume()
-    {
-        pauseMenu.SetActive(false);
-        gameButtons.SetActive(true);
-        Time.timeScale = 1f;
-        EventBus.RaiseEvent<IPauseHandler>(h => h.Resume());
-    }
+        public void Resume()
+        {
+            pauseMenu.SetActive(false);
+            gameButtons.SetActive(true);
+            Time.timeScale = 1f;
+            EventBus.RaiseEvent<IPauseHandler>(h => h.Resume());
+        }
 
-    public void Home()
-    {
-        LevelLoader.Save();
-        Time.timeScale = 1f;
-        SceneManager.LoadScene(0);
-    }
+        public void Home()
+        {
+            LevelLoader.LevelLoader.Save();
+            Time.timeScale = 1f;
+            SceneManager.LoadScene(0);
+        }
     
-    public static void GameOver()
-    {
-        LevelLoader.Delete();
-        SceneManager.LoadScene(0);
+        public static void GameOver()
+        {
+            LevelLoader.LevelLoader.Delete();
+            SceneManager.LoadScene(0);
+        }
     }
 }

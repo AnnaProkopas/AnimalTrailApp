@@ -1,39 +1,44 @@
+using GameHelpers;
+using PlayerModule;
 using UnityEngine;
 
-public class Cake : MonoBehaviour, IPlayerTriggered, ISavable
+namespace GameObjects.ObjectForFood
 {
-    protected int energyPoints;
-    [SerializeField] public int healthPoints = -1;
-
-    [SerializeField] private TriggeredObjectType type = TriggeredObjectType.Cake;
-
-    public TriggeredObjectType Type { get => type; }
-
-    public Vector3 GetPosition()
+    public class Cake : MonoBehaviour, IPlayerTriggered, ISavable
     {
-        return transform.position;
-    }
-    
-    public GameObject GetGameObject() {
-        return gameObject;
-    }
+        protected int energyPoints;
+        [SerializeField] public int healthPoints = -1;
 
-    private void Start()
-    {
-        energyPoints = GameConstants.EnergyByType(type);
-    }
+        [SerializeField] private TriggeredObjectType type = TriggeredObjectType.Cake;
 
-    public void OnPlayerTriggerEnter(Player player, PlayerState playerState) 
-    {
-        switch (playerState)
+        public TriggeredObjectType Type { get => type; }
+
+        public Vector3 GetPosition()
         {
-            case PlayerState.Dead:
-            case PlayerState.Dying:
-                break;
-            default:
-                player.EatJunkFood(energyPoints, healthPoints);
-                Destroy(gameObject);
-                break;
+            return transform.position;
+        }
+    
+        public GameObject GetGameObject() {
+            return gameObject;
+        }
+
+        private void Start()
+        {
+            energyPoints = GameConstants.EnergyByType(type);
+        }
+
+        public void OnPlayerTriggerEnter(Player player, PlayerState playerState) 
+        {
+            switch (playerState)
+            {
+                case PlayerState.Dead:
+                case PlayerState.Dying:
+                    break;
+                default:
+                    player.EatJunkFood(energyPoints, healthPoints);
+                    Destroy(gameObject);
+                    break;
+            }
         }
     }
 }

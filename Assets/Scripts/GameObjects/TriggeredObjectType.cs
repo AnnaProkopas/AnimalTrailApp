@@ -1,23 +1,26 @@
-public enum TriggeredObjectType: int
-{ 
-    Fox = -1,
+namespace GameObjects
+{
+    public enum TriggeredObjectType: int
+    { 
+        Fox = -1,
     
-    Default = 0,
-    Mouse = 1,
-    GrayMouse = 9,
-    Bird = 10,
+        Default = 0,
+        Mouse = 1,
+        GrayMouse = 9,
+        Bird = 10,
     
-    Cake = 2,
-    Garbage = 5,
-    Meat = 11,
-    RawMeat = 12,
-    Cheese = 13,
-    Sausage = 14,
+        Cake = 2,
+        Garbage = 5,
+        Meat = 11,
+        RawMeat = 12,
+        Cheese = 13,
+        Sausage = 14,
     
-    Car = 3,
-    CarFoodSpawner = 4,
+        Car = 3,
+        CarFoodSpawner = 4,
     
-    Dog = 6,
-    Grass = 7,
-    Human = 8,
+        Dog = 6,
+        Grass = 7,
+        Human = 8,
+    }
 }
