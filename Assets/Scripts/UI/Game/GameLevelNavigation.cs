@@ -1,6 +1,6 @@
 using EventBusModule;
 using EventBusModule.GameProcess;
-using PlayerModule;
+using LevelLoaderModule;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -9,7 +9,6 @@ namespace UI.Game
     public class GameLevelNavigation : MonoBehaviour
     {
         [SerializeField] private GameObject pauseMenu;
-        [SerializeField] private EnergyManager energyManager;
         [SerializeField] private GameObject gameButtons;
 
         void OnApplicationPause(bool pauseStatus)
@@ -17,7 +16,7 @@ namespace UI.Game
             if (pauseStatus)
             {
                 Pause();
-                LevelLoader.LevelLoader.Save();
+                LevelLoader.Save();
             }
         }
     
@@ -26,7 +25,7 @@ namespace UI.Game
             if (!hasFocus)
             {
                 Pause();
-                LevelLoader.LevelLoader.Save();
+                LevelLoader.Save();
             }
         }
     
@@ -48,14 +47,14 @@ namespace UI.Game
 
         public void Home()
         {
-            LevelLoader.LevelLoader.Save();
+            LevelLoader.Save();
             Time.timeScale = 1f;
             SceneManager.LoadScene(0);
         }
     
         public static void GameOver()
         {
-            LevelLoader.LevelLoader.Delete();
+            LevelLoader.Delete();
             SceneManager.LoadScene(0);
         }
     }

@@ -2,7 +2,7 @@
 using GameObjects;
 using UnityEngine;
 
-namespace LevelLoader
+namespace LevelLoaderModule
 {
     [Serializable]
     public class StoredObject

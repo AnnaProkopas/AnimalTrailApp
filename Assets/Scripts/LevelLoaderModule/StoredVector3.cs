@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace LevelLoader
+namespace LevelLoaderModule
 {
     [Serializable]
     public class StoredVector3

@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using LevelLoaderModule;
+using UnityEngine;
 using UnityEngine.UI;
 
 namespace UI.Home
@@ -15,7 +16,7 @@ namespace UI.Home
 
         public bool CanLoadOldLevel()
         {
-            return LevelLoader.LevelLoader.HasSavedLevel();
+            return LevelLoader.HasSavedLevel();
         }
     }
 }

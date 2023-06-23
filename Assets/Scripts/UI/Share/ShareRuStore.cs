@@ -37,10 +37,6 @@ namespace UI.Share
                 intentObject.Call<AndroidJavaObject>("putExtra", intentClass.GetStatic<string>("EXTRA_SUBJECT"), "SUBJECT");
                 intentObject.Call<AndroidJavaObject>("putExtra", intentClass.GetStatic<string>("EXTRA_TEXT"), LangManager.GetTranslate(ShareMessageKey));
 
-                // AndroidJavaObject uriObject = uriClass.CallStatic<AndroidJavaObject>("parse","file:///sdcard/expl.jpg");
-                // intentObject.Call<AndroidJavaObject>("putExtra", intentClass.GetStatic<string>("EXTRA_STREAM"), uriObject);
-                // intentObject.Call<AndroidJavaObject>("setType", "image/jpeg");
-
                 AndroidJavaClass unity = new AndroidJavaClass("com.unity3d.player.UnityPlayer");
                 AndroidJavaObject currentActivity = unity.GetStatic<AndroidJavaObject>("currentActivity");
                 currentActivity.Call("startActivity", intentObject);

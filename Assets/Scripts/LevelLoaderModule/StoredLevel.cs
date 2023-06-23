@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using PlayerModule;
 using UnityEngine;
 
-namespace LevelLoader
+namespace LevelLoaderModule
 {
     [Serializable]
     public class StoredLevel

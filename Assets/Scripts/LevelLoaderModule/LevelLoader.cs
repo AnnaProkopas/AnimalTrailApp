@@ -10,7 +10,7 @@ using PlayerModule;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace LevelLoader
+namespace LevelLoaderModule
 {
     public class LevelLoader: MonoBehaviour
     {

@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using LevelLoaderModule;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 
 namespace UI.Home
@@ -7,7 +8,7 @@ namespace UI.Home
     {
         public void LoadNewLevel()
         {
-            LevelLoader.LevelLoader.Delete();
+            LevelLoader.Delete();
             SceneManager.LoadScene(1);
         }
     }
