@@ -10,8 +10,6 @@ namespace EventBusModule.GameEvents
 
         void HandleEnergyDeath();
 
-        void HandleFoodDeath();
-
         void HandleDogAttack();
 
         void HandleHumanCrying();
@@ -20,6 +18,10 @@ namespace EventBusModule.GameEvents
 
         void HandleCarCollision();
 
-        void HandleCarSnackCollision();
+        void HandleCarSnackSpawn();
+        
+        void HandleDeath();
+        
+        void HandleHideFrom();
     }
 }

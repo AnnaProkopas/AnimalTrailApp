@@ -1,3 +1,5 @@
+using EventBusModule;
+using EventBusModule.GameEvents;
 using PlayerModule;
 using UnityEngine;
 
@@ -36,6 +38,7 @@ namespace GameObjects.Car
         {
             int foodInd = Random.Range(0, foods.Length);
             Instantiate(foods[foodInd], position, Quaternion.identity);
+            EventBus.RaiseEvent<IAwardsSystem>(h => h.HandleCarSnackSpawn());
         }
     }
 }

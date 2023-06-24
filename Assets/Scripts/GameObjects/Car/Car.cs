@@ -1,3 +1,5 @@
+using EventBusModule;
+using EventBusModule.GameEvents;
 using GameHelpers;
 using GameObjects.AnimalForFood;
 using PlayerModule;
@@ -20,6 +22,7 @@ namespace GameObjects.Car
 
         public void OnPlayerTriggerEnter(Player player, PlayerState playerState) 
         {
+            EventBus.RaiseEvent<IAwardsSystem>(h => h.HandleCarCollision());
             player.OnStartTakingDamage(GameConstants.DamageByType(Type));
         }
     

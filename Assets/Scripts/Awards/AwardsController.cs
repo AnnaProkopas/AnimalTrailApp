@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using EventBusModule.GameEvents;
 
 namespace Awards
@@ -19,50 +20,101 @@ namespace Awards
         }
 
         private List<GameEvent> history = new List<GameEvent>();
+        private List<GameEvent> History
+        {
+            get => Instance.history;
+        }
 
         public void HandleEatJunkFood()
         {
-            Instance.history.Add(GameEvent.JunkFood);
+            History.Add(GameEvent.JunkFood);
+
+            if (History.Count - History.LastIndexOf(GameEvent.CarSnackSpawn) < 4)
+            {
+                AwardsStorage.Save(new List<AwardType> { AwardType.FoodCar });
+            }
         }
 
         public void HandleEatHealthyFood()
         {
-            Instance.history.Add(GameEvent.HealthyFood);
+            int healthyCount = History.Count(x => x == GameEvent.HealthyFood);
+            if ((healthyCount - 2) % 5 == 0)
+            {
+                AwardsStorage.Save(new List<AwardType> { AwardType.MouseEat });
+            }
+            
+            History.Add(GameEvent.HealthyFood);
         }
 
         public void HandleEnergyDeath()
         {
-            Instance.history.Add(GameEvent.EnergyDeath);
-        }
-
-        public void HandleFoodDeath()
-        {
-            Instance.history.Add(GameEvent.FoodDeath);
+            History.Add(GameEvent.Death);
+            if (History.Contains(GameEvent.JunkFood) && History.Contains(GameEvent.HumanEnjoying))
+            {
+                AwardsStorage.Save(new List<AwardType> { AwardType.SickAnimal });
+            }
         }
 
         public void HandleDogAttack()
         {
-            Instance.history.Add(GameEvent.DogAttack);
+            History.Add(GameEvent.DogAttack);
+        }
+        
+        public void HandleHideFrom()
+        {
+            if (History.Count - History.LastIndexOf(GameEvent.DogAttack) < 4)
+            {
+                AwardsStorage.Save(new List<AwardType> { AwardType.DogHide });
+            }
+            History.Add(GameEvent.HideEvent);
         }
 
         public void HandleHumanCrying()
         {
-            Instance.history.Add(GameEvent.HumanCrying);
+            History.Add(GameEvent.HumanCrying);
+            AwardsStorage.Save(new List<AwardType> { AwardType.HumanCry });
         }
 
         public void HandleHumanEnjoying()
         {
-            Instance.history.Add(GameEvent.HumanEnjoying);
+            History.Add(GameEvent.HumanEnjoying);
+            AwardsStorage.Save(new List<AwardType> { AwardType.HumanEnjoy });
         }
         
         public void HandleCarCollision()
         {
-            Instance.history.Add(GameEvent.CarCollision);
+            History.Add(GameEvent.CarCollision);
         }
         
-        public void HandleCarSnackCollision()
+        public void HandleCarSnackSpawn()
         {
-            Instance.history.Add(GameEvent.CarSnackCollision);
+            History.Add(GameEvent.CarSnackSpawn);
+        }
+
+        public void HandleDeath()
+        {
+            List<AwardType> reasonsOfDeath = new List<AwardType>();
+
+            History.Reverse();
+            foreach (var eEvent in History.Take(3).ToList())
+            {
+                switch (eEvent)
+                {
+                    case GameEvent.CarCollision:
+                        reasonsOfDeath.Add(AwardType.DieFastCar);
+                        break;
+                    case GameEvent.CarSnackSpawn:
+                        reasonsOfDeath.Add(AwardType.FoodCar);
+                        break;
+                    case GameEvent.DogAttack:
+                        reasonsOfDeath.Add(AwardType.DieDog);
+                        break;
+                    case GameEvent.JunkFood:
+                        reasonsOfDeath.Add(AwardType.GarbageEat);
+                        break;
+                }
+            }
+            AwardsStorage.Save(reasonsOfDeath);
         }
     }
 }

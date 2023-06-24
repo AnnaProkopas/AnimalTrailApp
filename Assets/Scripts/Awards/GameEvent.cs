@@ -4,12 +4,14 @@
     {
         JunkFood,
         HealthyFood,
-        EnergyDeath,
-        FoodDeath,
+        // EnergyDeath,
+        // FoodDeath,
         DogAttack,
         HumanCrying,
         HumanEnjoying,
         CarCollision,
-        CarSnackCollision,
+        CarSnackSpawn,
+        Death,
+        HideEvent,
     }
 }

@@ -155,6 +155,7 @@ namespace PlayerModule
 
         private void StartDyingProcess()
         {
+            EventBus.RaiseEvent<IAwardsSystem>(h => h.HandleDeath());
             if (currentState != PlayerState.Dead) currentState = PlayerState.Dying;
         }
 
@@ -179,7 +180,6 @@ namespace PlayerModule
             health = newHealth;
             if (IsReadyForDeath())
             {
-                EventBus.RaiseEvent<IAwardsSystem>(h => h.HandleFoodDeath());
                 StartDyingProcess();
             }
         }
@@ -307,6 +307,7 @@ namespace PlayerModule
             else if (onHideInGrass != null)
             {
                 setActiveCustomJoyButton?.Invoke(JoyButtonState.Hide);
+                EventBus.RaiseEvent<IAwardsSystem>(h => h.HandleHideFrom());
             } 
             else if (onMeetHuman != null)
             {
