@@ -15,6 +15,8 @@ namespace LevelLoaderModule
     public class LevelLoader: MonoBehaviour
     {
         private const string HasSavedLevelField = "has_saved_level";
+        private const string FileName = "gamesave.save";
+        
         private static readonly HashSet<TriggeredObjectType> IgnoreTypes = new HashSet<TriggeredObjectType>
         {
             TriggeredObjectType.CarFoodSpawner, 
@@ -48,7 +50,7 @@ namespace LevelLoaderModule
             level.SavePlayer(player.transform.position, player.Health, player.Energy, player.Score, player.JunkFoodScore, player.HumanPoints, player.State);
         
             BinaryFormatter bf = new BinaryFormatter();
-            FileStream file = File.Create(Application.persistentDataPath + "/gamesave.save");
+            FileStream file = File.Create(Application.persistentDataPath + "/" + FileName);
             bf.Serialize(file, level);
             file.Close();
 
@@ -57,7 +59,7 @@ namespace LevelLoaderModule
 
         public static void Delete()
         {
-            File.Delete(Application.persistentDataPath + "/gamesave.save");
+            File.Delete(Application.persistentDataPath + "/" + FileName);
             PlayerPrefs.SetInt(HasSavedLevelField, 0);
         }
 
@@ -82,7 +84,7 @@ namespace LevelLoaderModule
                 }
             
                 BinaryFormatter bf = new BinaryFormatter();
-                FileStream file = File.Open(Application.persistentDataPath + "/gamesave.save", FileMode.Open);
+                FileStream file = File.Open(Application.persistentDataPath + "/" + FileName, FileMode.Open);
                 StoredLevel level = (StoredLevel)bf.Deserialize(file);
                 file.Close();
 
