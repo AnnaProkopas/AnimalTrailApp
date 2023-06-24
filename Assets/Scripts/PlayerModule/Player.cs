@@ -2,6 +2,7 @@ using System;
 using EventBusModule;
 using EventBusModule.Controls;
 using EventBusModule.Energy;
+using EventBusModule.GameEvents;
 using EventBusModule.PlayerPoints;
 using GameHelpers;
 using GameObjects;
@@ -178,6 +179,7 @@ namespace PlayerModule
             health = newHealth;
             if (IsReadyForDeath())
             {
+                EventBus.RaiseEvent<IAwardsSystem>(h => h.HandleFoodDeath());
                 StartDyingProcess();
             }
         }
@@ -194,7 +196,7 @@ namespace PlayerModule
 
         public void DieEvent() 
         {
-            PlayerRatingService.AddRecord(currentScore, currentScore);
+            PlayerRatingService.AddRecord(currentScore, currentJunkFoodScore);
             Destroy(gameObject);
             GameLevelNavigation.GameOver();
         }
@@ -210,6 +212,7 @@ namespace PlayerModule
         {
             Eat(energyFoodValue, healthPointsValue); 
             IncreaseFoodCounter();
+            EventBus.RaiseEvent<IAwardsSystem>(h => h.HandleEatHealthyFood());
         }
     
         public void EatJunkFood(int energyFoodValue, int healthPointsValue)
@@ -217,6 +220,7 @@ namespace PlayerModule
             Eat(energyFoodValue, healthPointsValue);
             ChangeHumanPoint(0.1f);
             currentJunkFoodScore++;
+            EventBus.RaiseEvent<IAwardsSystem>(h => h.HandleEatJunkFood());
         }
 
         public void HandleTotalEnergy(int currentValue, int variation, bool isAnimated)
@@ -225,6 +229,7 @@ namespace PlayerModule
         
             if (currentValue <= 0)
             {
+                EventBus.RaiseEvent<IAwardsSystem>(h => h.HandleEnergyDeath());
                 StartDyingProcess();
             }
         }

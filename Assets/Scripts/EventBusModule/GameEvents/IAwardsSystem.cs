@@ -4,18 +4,22 @@ namespace EventBusModule.GameEvents
 {
     public interface IAwardsSystem : IGlobalSubscriber
     {
-        void HandleEatJunkFood(TriggeredObjectType type);
+        void HandleEatJunkFood();
         
-        void HandleEatHealthyFood(TriggeredObjectType type);
+        void HandleEatHealthyFood();
 
         void HandleEnergyDeath();
 
         void HandleFoodDeath();
 
-        void HandleDogDeath();
+        void HandleDogAttack();
 
         void HandleHumanCrying();
 
         void HandleHumanEnjoying();
+
+        void HandleCarCollision();
+
+        void HandleCarSnackCollision();
     }
 }

@@ -120,4 +120,112 @@
       <ru>Скачать: https://apps.rustore.ru/app/com.TrailMaker.AnimalTrail</ru>
     </Translations>
   </Record>
+  <Record Name="Awards_hint_HumanCry_key">
+    <Translations>
+      <en-us>Do you see a person? Play with him. He must have food.</en-us>
+      <ru>Видишь человека? Поиграй с ним. У него должна быть еда.</ru>
+    </Translations>
+  </Record>
+  <Record Name="Awards_history_HumanCry_key">
+    <Translations>
+      <en-us>Who knows what's in the head of a cunning fox. She can wag her tail cutely. May bite or scratch. May have rabies.</en-us>
+      <ru>Кто знает что в голове у хитрой лисы. Она может мило вилять хвостом. Может стащить сумку с едой. Может уксить или поцарапать. Может болеть бешенством.</ru>
+    </Translations>
+  </Record>
+  <Record Name="Awards_hint_HumanEnjoy_key">
+    <Translations>
+      <en-us>Human food tastes better than mice. Go to the person.</en-us>
+      <ru>Еда человека вкуснее мышей. Иди к человеку.</ru>
+    </Translations>
+  </Record>
+  <Record Name="Awards_history_HumanEnjoy_key">
+    <Translations>
+      <en-us>Lisa loves this food. But not all people are kind, there are hunters. Not all food is useful, the pain will come in the evening in the hole.</en-us>
+      <ru>Лиса любит эту еду. Но не все люди добрые, есть охотники. Не вся еда полезна, боль придет вечером в норе.</ru>
+    </Translations>
+  </Record>
+  <Record Name="Awards_hint_DogHide_key">
+    <Translations>
+      <en-us>The fox is a master of stealth. Trick the dog, hide in the grass.</en-us>
+      <ru>Лиса мастер скрытности. Обмани собаку, спрячься в траве.</ru>
+    </Translations>
+  </Record>
+  <Record Name="Awards_history_DogHide_key">
+    <Translations>
+      <en-us>Foxes go to people's houses in search of food. But encounters with dogs are often dangerous for foxes.</en-us>
+      <ru>Лисы выходят к домам людей в поисках еды. Но встречи с собаками нередко опасны для лисиц.</ru>
+    </Translations>
+  </Record>
+  <Record Name="Awards_hint_MouseEat_key">
+    <Translations>
+      <en-us>Great day, time to refresh. The fox is a predator, catch the prey.</en-us>
+      <ru>Отличный день, пора подкрепиться. Лиса - это хищник, поймай добычу.</ru>
+    </Translations>
+  </Record>
+  <Record Name="Awards_history_MouseEat_key">
+    <Translations>
+      <en-us>Mice are the basis of healthy fox nutrition. Birds and frogs are also common food. Eggs, chicks, beetles and insect larvae, herbs and berries. Nothing fatty, salty or smoked.</en-us>
+      <ru>Мыши - основа питания здоровой лисы. Птицы и лягушки тоже обычная еда. Яйца, птенцы, жуки и личинки насекомых, травы и ягоды. Ничего жирного, соленого или копченого.</ru>
+    </Translations>
+  </Record>
+  <Record Name="Awards_hint_GarbageEat_key">
+    <Translations>
+      <en-us>If it smells like a human, then it's delicious. Let's look for food in that garbage heap!</en-us>
+      <ru>Если пахнет человеком, значит это вкусно. Поищем еду в той мусорной куче!</ru>
+    </Translations>
+  </Record>
+  <Record Name="Awards_history_GarbageEat_key">
+    <Translations>
+      <en-us>If it smells like food, then it's food. If the fox knows how tasty the sausage is, then she will definitely try the bag from under it. The habit of delicious food will make the fox sick and creepy inhabitant of landfills.</en-us>
+      <ru>Если пахнет как еда, значит это еда. Если лиса знает как вкусна колбаса, то она обязательно попробует на зуб пакет из под нее. Привычка ко вкусной еде сделает лису больной и жуткой обитательницей свалок.</ru>
+    </Translations>
+  </Record>
+  <Record Name="Awards_hint_SickAnimal_key">
+    <Translations>
+      <en-us>A long life next to a person rarely leads to good health.</en-us>
+      <ru>Долгая жизнь рядом с человеком редко приводит к крепкому здоровью.</ru>
+    </Translations>
+  </Record>
+  <Record Name="Awards_history_SickAnimal_key">
+    <Translations>
+      <en-us>Eats in landfills. Hiding from packs of dogs. Terrible, tired fox. She got used to the man, but he did not take her home. It would be better if they didn't meet.</en-us>
+      <ru>Питается на свалках. Скрывается от стай собак. Страшная, уставшая лиса. Она привыкла к человеку, но он не взял ее домой. Лучше бы они не встречались.</ru>
+    </Translations>
+  </Record>
+  <Record Name="Awards_hint_DieFastCar_key">
+    <Translations>
+      <en-us>Road, speed, fox. What can go wrong?</en-us>
+      <ru>Дорога, скорость, лиса. Что может пойти не так?</ru>
+    </Translations>
+  </Record>
+  <Record Name="Awards_history_DieFastCar_key">
+    <Translations>
+      <en-us>The man has food. There are people on the roads. If you wait a long time on the road, you can get food, the fox thought.</en-us>
+      <ru>У человека есть еда. Люди есть у дорог. Если долго ждать на дороге можно получить еду, - подумала лиса.</ru>
+    </Translations>
+  </Record>
+  <Record Name="Awards_hint_DieFoodCar_key">
+    <Translations>
+      <en-us>If you wait for a person on the road, he will definitely come.</en-us>
+      <ru>Если подождать человека на дороге, то он обязательно приедет.</ru>
+    </Translations>
+  </Record>
+  <Record Name="Awards_history_DieFoodCar_key">
+    <Translations>
+      <en-us>The car stopped to take a picture of the fox and left her a tasty present. People didn't know that delicious food would lure the fox out onto the road again.</en-us>
+      <ru>Машина остановилась, чтобы сфотографировать лису и оставила ей вкусный подарок. Люди не знали, что вкусная еда выманит лису на дорогу вновь.</ru>
+    </Translations>
+  </Record>
+  <Record Name="Awards_hint_DieDog_key">
+    <Translations>
+      <en-us>Where there are people, there are dogs.</en-us>
+      <ru>Там, где люди, там и собаки.</ru>
+    </Translations>
+  </Record>
+  <Record Name="Awards_history_DieDog_key">
+    <Translations>
+      <en-us>Packs of dogs and lone foxes rarely live in peace. In a cold winter, a fox is no worse than a cat.</en-us>
+      <ru>Стаи собак и одинокие лисы редко живут в мире. Холодной зимой лиса ничем не хуже кошки.</ru>
+    </Translations>
+  </Record>
 </Records>

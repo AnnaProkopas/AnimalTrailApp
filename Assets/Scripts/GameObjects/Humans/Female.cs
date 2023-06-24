@@ -1,3 +1,5 @@
+using EventBusModule;
+using EventBusModule.GameEvents;
 using JetBrains.Annotations;
 using PlayerModule;
 using UnityEngine;
@@ -66,18 +68,18 @@ namespace GameObjects.Humans
             switch (playerState)
             {
                 case PlayerState.Attack:
-                    state = FemaleState.Cry;
+                    SetState(state = FemaleState.Cry);
                     break;
                 case PlayerState.LookAround:
                     // player.onAttack -= OnAttack;
-                    state = FemaleState.Happy;
+                    SetState(state = FemaleState.Happy);
                     if (countCakes-- > 0)
                     {
                         Spawn(player.GetPosition() + (new Vector2(0, 1)));
                     }
                     break;
                 default:
-                    state = FemaleState.Idle;
+                    SetState(state = FemaleState.Idle);
                     break;
             } 
         
@@ -86,7 +88,7 @@ namespace GameObjects.Humans
 
         public void OnPlayerTriggerExit(Player player, PlayerState playerState)
         {
-            state = FemaleState.Idle;
+            SetState(state = FemaleState.Idle);
             player.onMeetHuman -= OnMeetHuman;
             countCakes = maxCountCakes;
         }
@@ -96,7 +98,7 @@ namespace GameObjects.Humans
             switch (player.State)
             {
                 case PlayerState.Attack:
-                    state = FemaleState.Cry;
+                    SetState(FemaleState.Cry);
                     break;
                 case PlayerState.LookAround:
                     if (countCakes > 0)
@@ -112,6 +114,21 @@ namespace GameObjects.Humans
         private void Spawn(Vector2 position) 
         {
             Instantiate(cake, position, Quaternion.identity);
+        }
+
+        private void SetState(FemaleState state)
+        {
+            switch (state)
+            {
+                case FemaleState.Cry:
+                    EventBus.RaiseEvent<IAwardsSystem>(h => h.HandleHumanCrying());
+                    break;
+                case FemaleState.Happy:
+                    EventBus.RaiseEvent<IAwardsSystem>(h => h.HandleHumanEnjoying());
+                    break;
+            }
+
+            this.state = state;
         }
     }
 }

@@ -1,5 +1,7 @@
 using System;
 using System.Collections;
+using EventBusModule;
+using EventBusModule.GameEvents;
 using GameHelpers;
 using PlayerModule;
 using UnityEngine;
@@ -95,6 +97,7 @@ namespace GameObjects.Dog
                 if (currentTime > counter) 
                 {
                     enemy.OnStartTakingDamage(AttackValue);
+                    EventBus.RaiseEvent<IAwardsSystem>(h => h.HandleDogAttack());
                 
                     DateTime timeToSub = lastChangedTime > counter ? lastChangedTime : counter;
                     counter = timeToSub.AddSeconds(RestoreDuration);

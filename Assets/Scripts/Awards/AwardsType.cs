@@ -9,7 +9,7 @@
         GarbageEat,
         SickAnimal,
         DieFastCar,
-        DieFoodCar,
+        FoodCar,
         DieDog
     }
 }
