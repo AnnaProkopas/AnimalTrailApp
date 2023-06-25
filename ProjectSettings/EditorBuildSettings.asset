@@ -23,6 +23,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/SettingsScreen.unity
     guid: 9865d9ba6fb294b4b99f22e7ffe525eb
+  - enabled: 1
+    path: Assets/Scenes/AwardsScreen.unity
+    guid: b91ab3a6e23295e499be44ec4e803d7c
   m_configObjects:
     com.unity.adaptiveperformance.loader_settings: {fileID: 11400000, guid: c15c0d8be7e27a34f8d31eb0e6be43e7, type: 2}
     com.unity.adaptiveperformance.simulator.provider_settings: {fileID: 11400000, guid: 1fd23dfa72041104db017f77eb15f56b, type: 2}

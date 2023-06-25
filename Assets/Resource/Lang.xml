@@ -177,7 +177,7 @@
   <Record Name="Awards_history_GarbageEat_key">
     <Translations>
       <en-us>If it smells like food, then it's food. If the fox knows how tasty the sausage is, then she will definitely try the bag from under it. The habit of delicious food will make the fox sick and creepy inhabitant of landfills.</en-us>
-      <ru>Если пахнет как еда, значит это еда. Если лиса знает как вкусна колбаса, то она обязательно попробует на зуб пакет из под нее. Привычка ко вкусной еде сделает лису больной и жуткой обитательницей свалок.</ru>
+      <ru>Оно пахнет как еда, значит съедобно! Если лиса знает как вкусна колбаса, то обязательно попробует на зуб пакет из под нее. Такая привычка сделает лису больной обитательницей свалок.</ru>
     </Translations>
   </Record>
   <Record Name="Awards_hint_SickAnimal_key">
@@ -204,13 +204,13 @@
       <ru>У человека есть еда. Люди есть у дорог. Если долго ждать на дороге можно получить еду, - подумала лиса.</ru>
     </Translations>
   </Record>
-  <Record Name="Awards_hint_DieFoodCar_key">
+  <Record Name="Awards_hint_FoodCar_key">
     <Translations>
       <en-us>If you wait for a person on the road, he will definitely come.</en-us>
       <ru>Если подождать человека на дороге, то он обязательно приедет.</ru>
     </Translations>
   </Record>
-  <Record Name="Awards_history_DieFoodCar_key">
+  <Record Name="Awards_history_FoodCar_key">
     <Translations>
       <en-us>The car stopped to take a picture of the fox and left her a tasty present. People didn't know that delicious food would lure the fox out onto the road again.</en-us>
       <ru>Машина остановилась, чтобы сфотографировать лису и оставила ей вкусный подарок. Люди не знали, что вкусная еда выманит лису на дорогу вновь.</ru>
