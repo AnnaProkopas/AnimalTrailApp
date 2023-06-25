@@ -155,8 +155,8 @@ namespace PlayerModule
 
         private void StartDyingProcess()
         {
-            EventBus.RaiseEvent<IAwardsSystem>(h => h.HandleDeath());
             if (currentState != PlayerState.Dead) currentState = PlayerState.Dying;
+            EventBus.RaiseEvent<IAwardsSystem>(h => h.HandleDeath());
         }
 
         private void IfNotDyingSetState(PlayerState state)

@@ -75,6 +75,14 @@ namespace UI.Game
             SceneManager.LoadScene(0);
         }
     
+        public void Awards()
+        {
+            LevelLoader.Save();
+            Time.timeScale = 1f;
+            StaticStore.AddScene(SceneManager.GetActiveScene().buildIndex);
+            SceneManager.LoadScene(4);
+        }
+    
         public static void GameOver()
         {
             LevelLoader.Delete();

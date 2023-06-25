@@ -33,7 +33,7 @@ namespace UI.Game
         public static int PopSceneId()
         {
             var result = _sceneIdHistory.Last();
-            _sceneIdHistory.Remove(_sceneIdHistory.Count - 1);
+            _sceneIdHistory.RemoveAt(_sceneIdHistory.Count - 1);
             return result;
         }
     }
