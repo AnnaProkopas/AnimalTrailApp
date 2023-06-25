@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using EventBusModule;
 using EventBusModule.GameEvents;
 
 namespace Awards
@@ -17,6 +18,12 @@ namespace Awards
 
                 return _instance;
             }
+        }
+
+        public AwardsController()
+        {
+            _instance = this;
+            EventBus.Subscribe(this);
         }
 
         private List<GameEvent> history = new List<GameEvent>();
@@ -115,6 +122,8 @@ namespace Awards
                 }
             }
             AwardsStorage.Save(reasonsOfDeath);
+            
+            EventBus.Unsubscribe(_instance);
         }
     }
 }

@@ -261,6 +261,7 @@ namespace PlayerModule
                 IfNotDyingSetState(PlayerState.Hidden);
                 onHideInGrass.Invoke(this);
                 afterHideInGrass?.Invoke(this);
+                EventBus.RaiseEvent<IAwardsSystem>(h => h.HandleHideFrom());
             } 
             else if (onMeetHuman != null)
             {
@@ -307,7 +308,6 @@ namespace PlayerModule
             else if (onHideInGrass != null)
             {
                 setActiveCustomJoyButton?.Invoke(JoyButtonState.Hide);
-                EventBus.RaiseEvent<IAwardsSystem>(h => h.HandleHideFrom());
             } 
             else if (onMeetHuman != null)
             {

@@ -1,7 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.Serialization.Formatters.Binary;
+using EventBusModule;
+using EventBusModule.GameProcess;
+using UI.Localization;
 using UnityEngine;
 
 namespace Awards
@@ -12,6 +16,7 @@ namespace Awards
         private const string FileName = "awardssave.save";
 
         private static List<StoredAward> staticStoredAwards = null;
+        private static Sprite[] sprites = null;
 
         public static List<StoredAward> Load()
         {
@@ -46,6 +51,7 @@ namespace Awards
                 }
 
                 storedAwardByType[awardType].count += 1;
+                EventBus.RaiseEvent<IAwardHandler>(h => h.HandleGettingAward(awardType));
             }
             staticStoredAwards = storedAwardByType.Values.ToList();
             
@@ -74,6 +80,25 @@ namespace Awards
             StoredAwards storedAwards = new StoredAwards(staticStoredAwards);
             bf.Serialize(file, storedAwards);
             file.Close();
+        }
+
+        public static string GetHistoryText(AwardType type)
+        {
+            return LangManager.GetTranslate("Awards_history_" + Enum.GetName(typeof(AwardType), type) + "_key");
+        }
+
+        public static Sprite GetSprite(Texture texture, AwardType type)
+        {
+            if (sprites == null)
+            {
+                sprites = new Sprite[9];
+                for (int i = 0; i < 9; i++)
+                {
+                    sprites[i] = Resources.Load<Sprite>("awards_" + i);
+                }
+            }
+
+            return sprites[(int)type];
         }
     }
 }

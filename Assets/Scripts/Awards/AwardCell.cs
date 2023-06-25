@@ -43,7 +43,7 @@ namespace Awards
         {
             if (count > 0)
             {
-                string text = LangManager.GetTranslate("Awards_history_" + Enum.GetName(typeof(AwardType), type) + "_key");
+                string text = AwardsStorage.GetHistoryText(type);
                 openAward.Invoke(mainSprite, text);
             }
             else

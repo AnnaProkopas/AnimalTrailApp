@@ -2,6 +2,7 @@
 using System.IO;
 using System.Linq;
 using System.Runtime.Serialization.Formatters.Binary;
+using Awards;
 using EventBusModule;
 using EventBusModule.Energy;
 using EventBusModule.PlayerPoints;
@@ -103,6 +104,8 @@ namespace LevelLoaderModule
                 EventBus.RaiseEvent<IHealthHandler>(h => h.HandleHealthValue(level.playerHealth, null, false));
                 EventBus.RaiseEvent<IHumanPointsHandler>(h => h.HandleHumanPointsValue(level.playerHumanPoints, null, false));
             }
+
+            new AwardsController();
         }
 
         private static Player GetPlayer()

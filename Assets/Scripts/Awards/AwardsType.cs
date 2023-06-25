@@ -2,7 +2,7 @@
 {
     public enum AwardType
     {
-        HumanCry,
+        HumanCry = 0,
         HumanEnjoy,
         DogHide,
         MouseEat,

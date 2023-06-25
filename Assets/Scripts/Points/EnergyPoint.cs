@@ -7,7 +7,7 @@ namespace Points
         private Animator animator;
         private static readonly int State = Animator.StringToHash("State");
 
-        private void Start()
+        private void Awake()
         {
             animator = gameObject.GetComponent<Animator>();
         }

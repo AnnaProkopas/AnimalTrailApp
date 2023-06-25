@@ -8,7 +8,7 @@ namespace Points
         private static readonly int State = Animator.StringToHash("State");
         private static readonly int Disable = Animator.StringToHash("Disable");
 
-        private void Start()
+        private void Awake()
         {
             animator = gameObject.GetComponent<Animator>();
         }
