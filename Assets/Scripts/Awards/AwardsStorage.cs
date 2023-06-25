@@ -75,6 +75,7 @@ namespace Awards
 
         private static void UpdateFile()
         {
+            PlayerPrefs.SetInt(HasSavedAwardsField, 1);
             BinaryFormatter bf = new BinaryFormatter();
             FileStream file = File.Create(Application.persistentDataPath + "/" + FileName);
             StoredAwards storedAwards = new StoredAwards(staticStoredAwards);

@@ -36,7 +36,7 @@ namespace Awards
         {
             History.Add(GameEvent.JunkFood);
 
-            if (History.Count - History.LastIndexOf(GameEvent.CarSnackSpawn) < 4)
+            if (History.Contains(GameEvent.CarSnackSpawn) && History.Count - History.LastIndexOf(GameEvent.CarSnackSpawn) < 4)
             {
                 AwardsStorage.Save(new List<AwardType> { AwardType.FoodCar });
             }

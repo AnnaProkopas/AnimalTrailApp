@@ -1145,7 +1145,7 @@ MonoBehaviour:
   type: 0
   emptySprite: {fileID: -1231966679, guid: 67f581d32fdca234286428cd055fd218, type: 3}
   disabledSprite: {fileID: 578869053, guid: 67f581d32fdca234286428cd055fd218, type: 3}
-  mainSprite: {fileID: 0}
+  mainSprite: {fileID: 1659790716, guid: 67f581d32fdca234286428cd055fd218, type: 3}
 --- !u!114 &590890557
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3044,7 +3044,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   text: {fileID: 1533439232}
-  key: Record_title_key
+  key: Awards_title_key
 --- !u!114 &1533439235
 MonoBehaviour:
   m_ObjectHideFlags: 0

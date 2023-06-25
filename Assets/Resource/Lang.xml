@@ -90,6 +90,18 @@
       <ru>музыка:выкл</ru>
     </Translations>
   </Record>
+  <Record Name="Settings_autors_key">
+    <Translations>
+      <en-us>authors</en-us>
+      <ru>авторы</ru>
+    </Translations>
+  </Record>
+  <Record Name="Authors_title_key">
+    <Translations>
+      <en-us>Authors</en-us>
+      <ru>Авторы</ru>
+    </Translations>
+  </Record>
   <Record Name="Pause_continue_button_key">
     <Translations>
       <en-us>continue</en-us>
@@ -153,7 +165,7 @@
   <Record Name="Awards_history_DogHide_key">
     <Translations>
       <en-us>Foxes go to people's houses in search of food. But encounters with dogs are often dangerous for foxes.</en-us>
-      <ru>Лисы выходят к домам людей в поисках еды. Но встречи с собаками нередко опасны для лисиц.</ru>
+      <ru>Лисы выходят к домам людей в поисках еды. Но встречи с собаками нередко опасны для них.</ru>
     </Translations>
   </Record>
   <Record Name="Awards_hint_MouseEat_key">

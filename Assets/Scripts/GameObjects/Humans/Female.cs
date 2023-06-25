@@ -103,6 +103,7 @@ namespace GameObjects.Humans
                 case PlayerState.LookAround:
                     if (countCakes > 0)
                     {
+                        SetState(FemaleState.Happy);
                         Spawn(player.GetPosition() + new Vector2(Random.Range(-.2f, .2f), Random.Range(-.3f, -.2f)));
                         countCakes -= 1;
                     }
