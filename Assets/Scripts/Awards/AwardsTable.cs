@@ -10,6 +10,11 @@ namespace Awards
     {
         [SerializeField] private GameObject openedAwardSprite;
         [SerializeField] private GameObject openedAwardText;
+        [SerializeField] private GameObject openedBackButton;
+        
+        [SerializeField] private GameObject mainButtonPanels;
+        
+        [SerializeField] private GameObject rootGameObject;
         private void Awake()
         {
             Dictionary<AwardType, StoredAward> awards = AwardsStorage.Load().ToDictionary(x => x.type, x => x);
@@ -34,23 +39,26 @@ namespace Awards
         void OpenAward(Sprite sprite, string text)
         {
             gameObject.SetActive(false);
+            mainButtonPanels.SetActive(false);
             
             openedAwardSprite.GetComponent<Image>().sprite = sprite;
             openedAwardSprite.SetActive(true);
-            
             openedAwardText.GetComponentInChildren<TextMeshProUGUI>().text = text;
-            // var verticalLayoutGroup = openedAwardText.GetComponent<VerticalLayoutGroup>();
             openedAwardText.SetActive(true);
+            openedBackButton.SetActive(true);
+            
             LayoutRebuilder.ForceRebuildLayoutImmediate(openedAwardText.GetComponent<RectTransform>());
-            // openedAwardText.GetComponent<>().ForceRebuildLayoutImmediate;
+            LayoutRebuilder.ForceRebuildLayoutImmediate(rootGameObject.GetComponent<RectTransform>());
         }
 
         public void OnCloseAward()
         {
             openedAwardSprite.SetActive(false);
             openedAwardText.gameObject.SetActive(false);
+            openedBackButton.SetActive(false);
             
             gameObject.SetActive(true);
+            mainButtonPanels.SetActive(true);
         }
     }
 }
